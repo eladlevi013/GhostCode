@@ -4,7 +4,7 @@ Welcome to GhostCode, where programming meets the supernatural in a chilling cod
 
 ## Demo of the Game
 <p align="center" width="100%">
-  <img src="https://github.com/eladlevi013/GhostCode/blob/main/public/ghostcode_gif.gif" width="80%">
+  <img src="https://github.com/eladlevi013/GhostCode/blob/main/public/ghostcode_gif.gif" width="100%">
   </br></br>
 </p>
 
@@ -13,6 +13,9 @@ To experience the ghostly action firsthand, head over to [GhostCode on Vercel](h
 
 ## About the Project
 Our GhostCode game is built on the Next.js framework, which offers an excellent foundation for creating web applications with React. Next.js enables us to provide you with a seamless and interactive gaming experience. The intuitive routing, server-side rendering, and excellent development experience of Next.js ensure that GhostCode runs smoothly.
+
+### Phaser.js Game Engine
+GhostCode's spine-tingling gameplay is brought to life by the Phaser.js game engine. Phaser.js is a fast, fun, and free open-source framework for Canvas and WebGL-powered browser games. With Phaser.js, we can create visually stunning and interactive gaming experiences that keep you engaged as you navigate the spectral challenges.
 
 ### Parsing User Code with Peg.js
 One of the most exciting aspects of GhostCode is its ability to understand and execute your coding commands. We achieve this feat using the Peg.js package, a powerful parser generator for JavaScript. Peg.js allows us to transform your written code into actionable instructions for our spectral ghost character. It's the magic behind the scenes that brings your code to life within the game.
