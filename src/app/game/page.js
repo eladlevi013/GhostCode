@@ -44,6 +44,7 @@ const Home = () => {
         headers: { Authorization: `Bearer ${token}` }
       }).then(res => {
         useAccountDataStore.setState({accountData: res.data});
+        setRunningMode('run');
       }).catch(err => {
         console.log(err);
       });
