@@ -22,6 +22,6 @@ Our parser, powered by Peg.js, interprets your code and translates it into movem
 We hope you enjoy coding with GhostCode and exploring the eerie world of spectral syntax. If you have any questions, feedback, or ideas to enhance this project further, please feel free to share them. We're excited to have you as part of our cryptic coding community!
 
 ## License
-<b>Please note:</b> This repository does not include assets as they have been acquired and cannot be shared due to licensing restrictions.
+<b>Please note:</b> This repository does not include assets as they have been acquired and cannot be shared due to licensing restrictions.</br>
 GhostCode is licensed under the MIT License. Feel free to fork this repository and make your own spooky coding adventures!
 Start coding with the supernatural today and embrace the spectral world of GhostCode! Happy haunting! 👻💻
