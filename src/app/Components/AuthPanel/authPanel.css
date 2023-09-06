@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'dimbo';
+    src: local('dimbo'), 
+    url(../../../../public/fonts/dimbo.ttf);
+}
+
+.darkModalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.widePanelDiv {
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    max-width: 750px;
+}
+
+.widePanelCloseButton {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    cursor: pointer;
+    top: -525px;
+    left: 630px;
+}
+
+.modeContainer {
+    margin-top: -50px;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    position: fixed;
+}
+
+.titleContainer {
+    text-align: center;
+    font-size: 60px;
+    color: white;
+    margin-top: -110px;
+    margin-left: -60px;
+    text-shadow: -3.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -3.5px 3.5px 0 #000, 1.5px 3.5px 0 #000;
+    font-family: dimbo;
+}
+
+.inputsContainer {
+    text-align: center;
+    margin-top: 140px;
+    z-index: 100;
+}
+
+.inputSingleContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 1100px;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+}
+
+.inputStyle {
+    width: 400px;
+    height: 20px;
+    font-family: dimbo;
+    letter-spacing: 0.75px;
+    font-size: 25px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    border: 3px solid black;
+    outline: none;
+    border-radius: 8px;
+    margin: 10px auto;
+}
+
+.bottomContainer {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: -10px auto;
+}
+
+.loadingContainer {
+    margin-top: -28px;
+}
+
+.buttonStyle {
+    background-color: transparent;
+    width: 200px;
+    height: 65px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}

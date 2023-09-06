@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'dimbo';
+    src: local('dimbo'), 
+    url(../../../../public/fonts/dimbo.ttf);
+}
+
+.levelSelectorWorldName
+{
+    width: 100%;
+    top: 270px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    position: absolute;
+    letter-spacing: 1px;
+    font-family: dimbo;
+    font-size: 60px;
+    z-index: 1000;
+    color: white;
+    text-shadow: -3.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -3.5px 3.5px 0 #000, 1.5px 3.5px 0 #000;  
+}
+
+.darkContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.widePanelContainer {
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    max-width: 850px;
+}
+
+.widePanelStyle {
+    max-width: 100%;
+    margin-top: 80px;
+}
+
+.closeButtonStyle {
+    width: 85px;
+    height: 85px;
+    position: relative;
+    cursor: pointer;
+    top: -595px;
+    left: 710px;
+}
+
+.arrowButtonStyle {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    cursor: pointer;
+    top: -210px;
+}
+
+.levelButtonStyle {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
