@@ -17,7 +17,6 @@ export default function LevelSelector(props) {
     const setLevelSelectorModalStore = useLevelSelectionModalStore
         ((state) => state.setSelectorModalMode);
     const accountData = useAccountDataStore((state) => state.accountData);
-
     const [worldIndex, setWorldIndex] = useState(0);
     const currentAccountLevel = accountData.currentLevel;
     const accountLevelsData = accountData.levelsData;
@@ -51,60 +50,59 @@ export default function LevelSelector(props) {
                 <img src='../assets/UI/arrow_back_button.png'
                     onClick={() => {worldIndex == 0 ? null:setWorldIndex(worldIndex - 1)}}
                     style={{left: '-80px'}} className='arrowButtonStyle' alt="Close Button"/>
-{Array.from({ length: 5 }, (_, i) => i + 1).map((i) => {
-    const levelNumber = i + worldIndex * 5;
-    const isLevelAccessible = levelNumber <= currentAccountLevel;
 
-    const buttonStyle = {
-        top: `${i > 3 ? -238 : -340}px`,
-        left: `${(i - 1) * 10 + 90 + (i > 3 ? -300 : -50)}px`,
-        opacity: isLevelAccessible ? 1 : 0.5,
-        pointerEvents: isLevelAccessible ? 'auto' : 'none',
-    };
+                {Array.from({ length: 5 }, (_, i) => i + 1).map((i) => {
+                    const levelNumber = i + worldIndex * 5;
+                    const isLevelAccessible = levelNumber <= currentAccountLevel;
 
-    const starImages = [];
-    // Define an array of star images to render exactly 3 stars
-    for (let j = 0; j < 3; j++) {
-        if (j < accountLevelsData[i]?.starsData) {
-            starImages.push(
-                <img
-                    key={`star-${j}`}
-                    src='../assets/UI/stars/star.png'
-                    style={{ width: '25px', position: 'absolute', marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
-                    alt={`Star ${j + 1}`}
-                />
-            );
-        } else {
-            starImages.push(
-                <img
-                    key={`star-${j}`}
-                    src='../assets/UI/stars/star_empty.png'
-                    style={{ width: '25px', position: 'absolute', marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
-                    alt={`Star ${j + 1}`}
-                />
-            );
-        }
-    }
-    
+                    const buttonStyle = {
+                        top: `${i > 3 ? -238 : -340}px`,
+                        left: `${(i - 1) * 10 + 90 + (i > 3 ? -300 : -50)}px`,
+                        opacity: isLevelAccessible ? 1 : 0.5,
+                        pointerEvents: isLevelAccessible ? 'auto' : 'none',
+                    };
 
-    return (
-        <div key={levelNumber} style={buttonStyle} className='levelButtonStyle'>
-            <img
-                onClick={() => {
-                    if (isLevelAccessible) {
-                        changeLevelTo(levelNumber);
+                    const starImages = [];
+                    for (let j = 0; j < 3; j++) {
+                        if (j < accountLevelsData[i + worldIndex*5]?.starsData) {
+                            starImages.push(
+                                <img
+                                    key={`star-${j}`}
+                                    src='../assets/UI/stars/star.png'
+                                    style={{ width: '25px', position: 'absolute',
+                                        marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
+                                    alt={`Star ${j + 1}`}
+                                />
+                            );
+                        } else {
+                            starImages.push(
+                                <img
+                                    key={`star-${j}`}
+                                    src='../assets/UI/stars/star_empty.png'
+                                    style={{ width: '25px', position: 'absolute', 
+                                        marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
+                                    alt={`Star ${j + 1}`}/>
+                            );
+                        }
                     }
-                }}
-                src={`../assets/UI/level_buttons/${i}.png`}
-                className='levelButtonStyle'
-                alt="Level Button"
-            />
-            <div>
-                {starImages}
-            </div>
-        </div>
-    );
-})}
+    
+                    return (
+                        <div key={levelNumber} style={buttonStyle} className='levelButtonStyle'>
+                            <img
+                                onClick={() => {
+                                    if (isLevelAccessible) {
+                                        changeLevelTo(levelNumber)
+                                    }
+                                }}
+                                src={`../assets/UI/level_buttons/${i}.png`}
+                                className='levelButtonStyle'
+                                alt="Level Button"/>
+                            <div>
+                                {starImages}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     )
