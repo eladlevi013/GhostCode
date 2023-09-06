@@ -1,4 +1,4 @@
-# GhostCode Readme
+# GhostCode Readme 👻
 
 Welcome to GhostCode, where programming meets the supernatural in a chilling coding adventure! Navigate eerie algorithms and spectral logic as you guide a mischievous ghost through haunting puzzles to collect shimmering gems. Conjure efficient lines of code to unravel enigmatic enigmas, securing precious gems with the fewest moves. Embrace the thrill of this frightfully delightful coding experience and master the spectral syntax to unleash your inner cryptic coder!
 
