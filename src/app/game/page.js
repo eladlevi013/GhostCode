@@ -37,6 +37,7 @@ const Home = () => {
   const [runningMode, setRunningMode] = useState('run'); // run or reset
   const [phaserGameInstance, setPhaserGameInstance] = useState(null);
   const [code, setCode] = useState('');
+  const [worldIndex, setWorldIndex] = useState(0);
 
   // when loading, check if user logged in
   useEffect(() => {
@@ -108,7 +109,7 @@ const Home = () => {
 
       {
         levelSelectorModalStore ? (
-          <LevelSelector phaserGame={phaserGameInstance}/>
+          <LevelSelector phaserGame={phaserGameInstance} worldIndex={worldIndex} setWorldIndex={setWorldIndex}/>
         ) : null
       }
       

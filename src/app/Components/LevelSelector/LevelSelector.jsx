@@ -1,8 +1,6 @@
 "use client"
 // import styles
 import './levelSelector.css'
-// import react
-import {useState} from 'react';
 // import constants
 import {worlds} from '@/app/constants';
 // import stores
@@ -17,7 +15,8 @@ export default function LevelSelector(props) {
     const setLevelSelectorModalStore = useLevelSelectionModalStore
         ((state) => state.setSelectorModalMode);
     const accountData = useAccountDataStore((state) => state.accountData);
-    const [worldIndex, setWorldIndex] = useState(0);
+    const setWorldIndex = props.setWorldIndex;
+    const worldIndex = props.worldIndex;
     const currentAccountLevel = accountData.currentLevel;
     const accountLevelsData = accountData.levelsData;
 
@@ -101,7 +100,6 @@ export default function LevelSelector(props) {
                         }
                     }
                     
-    
                     return (
                         <div key={levelNumber} style={buttonStyle} className='levelButtonStyle'>
                             <img
