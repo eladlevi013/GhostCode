@@ -38,12 +38,13 @@ export default function RootLayout({ children }) {
     }, [token]);
 
   return (
-    <html>
+    <html >
       <head>
         <title>GhostCode</title>
         <link rel="icon" href="/assets/web/favicon.ico" />
       </head>
-      <body style={{ fontFamily: 'inter' }}>
+      <body style={{ fontFamily: 'inter' }}
+        suppressHydrationWarning={true}>
         <Navbar/>
         <BadgeModal/>
         {children}

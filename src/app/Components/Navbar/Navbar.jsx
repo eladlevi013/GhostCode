@@ -47,7 +47,7 @@ export default function Navbar() {
             <div>
               <p className='badgeContainer'>
                 <img onClick={handleBadgeModal} style={{cursor: "pointer"}} width={"50px"}
-                  src={`assets/badges/${badges[parseInt((accountData?.currentLevel - 1) / 5)]}.png`}/>
+                  src={accountData ? `assets/badges/${badges[parseInt((accountData?.currentLevel - 1) / 5)] }.png` : null}/>
               </p>
               <p onClick={() => { clearToken(); window.location.href = '/'; }}
                 className='logoutContainer'>logout</p>

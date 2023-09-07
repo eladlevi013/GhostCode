@@ -13,7 +13,7 @@ const MainPage = () => {
   const setAuthPanelMode = useAuthModalStore((state) => state.setAuthPanelMode);
 
   return (
-    <div className='mainPageContainer'>
+    <div className='mainPageContainer' suppressHydrationWarning={true}>
       <motion.div initial={{ opacity: 0, y: 0 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}>
         <img src="assets/web/main_img.png" className='mainPageImage'/>

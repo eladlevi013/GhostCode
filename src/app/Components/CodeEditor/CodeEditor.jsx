@@ -13,7 +13,7 @@ import React, {useEffect} from 'react';
 import CodeHelper from '../CodeHelper/CodeHelper';
 
 export default function CodeEditor(props) {
-  const { setCode } = props;
+  const { setCode, code } = props;
   const theme = useThemeStore((state) => state.theme);
   const codemirrorRef = React.useRef();
 
@@ -49,6 +49,7 @@ export default function CodeEditor(props) {
     <>
     <CodeHelper insertText={handleInsertHelloWorld} />
     <CodeMirror className='codeMirrorStyles'
+      value={code}
       ref={codemirrorRef}
       height="100%" outline="none"
       theme={

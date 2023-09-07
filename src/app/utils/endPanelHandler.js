@@ -11,11 +11,9 @@ export function showFinishLevelPanel(scene, stars)
     },
     {        headers: { authorization: `Bearer ${scene.token}` },
 }).then((res) => {
-        console.log(res.data);
         axios.get('/api/account/getData/', {
             headers: { Authorization: `Bearer ${scene.token}` }
         }).then(res => {
-            console.log(res.data);
             scene.setAccountData(res.data);
         }
         ).catch(err => {

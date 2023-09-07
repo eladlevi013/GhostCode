@@ -3,7 +3,6 @@ import connectDB from '../../config/db';
 import Account from '../../models/account';
 
 export default async function handler(req, res) {
-    console.log(req.headers.authorization);
     const jwtToken = req.headers.authorization.split(' ')[1];
 
     // Updating finished level on Mongoose
