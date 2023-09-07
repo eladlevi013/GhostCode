@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect, createContext } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import motion and AnimatePresence
+// import react
+import React, {useEffect} from 'react';
 // loading components
 import AuthPanel from './Components/AuthPanel/AuthPanel';
 import Navbar from './Components/Navbar/Navbar';
@@ -12,14 +12,17 @@ import useAccountDataStore from './stores/useAccountDataStore';
 // loading axios
 import axios from 'axios';
 
-
-export const LayoutContext = createContext();
 export default function RootLayout({ children }) {
-    // saving fetched data of the account
-    const setAccountData = useAccountDataStore((state) => state.setAccountData);
-    const accountData = useAccountDataStore((state) => state.accountData);
-    // saving token
     const token = useTokenStore((state) => state.token);
+
+    useEffect(() => {
+      const storedToken = localStorage.getItem('token');
+      const storedTheme = localStorage.getItem('theme');
+      if (storedToken)
+        useTokenStore.setState({ token: storedToken });
+      if (storedTheme)
+        useThemeStore.setState({ theme: storedTheme });
+    }, []);
 
     // fetching account data from server
     useEffect(() => {
@@ -34,28 +37,12 @@ export default function RootLayout({ children }) {
       }
     }, [token]);
 
-    useEffect(() => {
-      console.log(accountData);
-    }, [accountData]);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      useTokenStore.setState({ token: storedToken });
-    }
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      useThemeStore.setState({ theme: storedTheme });
-    }
-  }, []);
-
   return (
     <html>
       <head>
         <title>GhostCode</title>
         <link rel="icon" href="/assets/web/favicon.ico" />
       </head>
-
       <body style={{ fontFamily: 'inter' }}>
         <Navbar/>
         <BadgeModal/>
