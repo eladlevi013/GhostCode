@@ -73,10 +73,10 @@ export default function LevelSelector(props) {
                                         key={`star-${j}`}
                                         src='../assets/UI/stars/star.png'
                                         style={{
-                                            width: '20px',
+                                            width: '23px',
                                             position: 'absolute',
                                             marginTop: marginTopValue, // Apply marginTop here
-                                            marginLeft: `${14 + j * 21}px`
+                                            marginLeft: `${12 + j * 21}px`
                                         }}
                                         alt={`Star ${j + 1}`}
                                     />
@@ -87,10 +87,10 @@ export default function LevelSelector(props) {
                                         key={`star-${j}`}
                                         src='../assets/UI/stars/star.png'
                                         style={{
-                                            width: '20px',
+                                            width: '23px',
                                             position: 'absolute',
                                             marginTop: marginTopValue, // Apply marginTop here
-                                            marginLeft: `${14 + j * 21}px`,
+                                            marginLeft: `${12 + j * 21}px`,
                                             filter: 'grayscale(100%)',
                                             filter: 'brightness(0.5) grayscale(100%)'
                                         }}
