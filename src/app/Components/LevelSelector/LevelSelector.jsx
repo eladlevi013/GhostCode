@@ -62,29 +62,45 @@ export default function LevelSelector(props) {
                         pointerEvents: isLevelAccessible ? 'auto' : 'none',
                     };
 
-                    const starImages = [];
-                    for (let j = 0; j < 3; j++) {
-                        if (j < accountLevelsData[i + worldIndex*5]?.starsData) {
-                            starImages.push(
-                                <img
-                                    key={`star-${j}`}
-                                    src='../assets/UI/stars/star.png'
-                                    style={{ width: '25px', position: 'absolute',
-                                        marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
-                                    alt={`Star ${j + 1}`}
-                                />
-                            );
-                        } else {
-                            starImages.push(
-                                <img
-                                    key={`star-${j}`}
-                                    src='../assets/UI/stars/star_empty.png'
-                                    style={{ width: '25px', position: 'absolute', 
-                                        marginTop: '-32px', marginLeft: `${10 + j * 22}px` }}
-                                    alt={`Star ${j + 1}`}/>
-                            );
+                    const starImages = [];  
+                    if (i + worldIndex * 5 <= currentAccountLevel) {
+                        for (let j = 0; j < 3; j++) {
+                            let marginTopValue = j === 1 ? '-26px' : '-32px'; // Adjusted marginTop for index 1
+                    
+                            if (accountLevelsData && j < accountLevelsData[i + worldIndex * 5]?.starsData) {
+                                starImages.push(
+                                    <img
+                                        key={`star-${j}`}
+                                        src='../assets/UI/stars/star.png'
+                                        style={{
+                                            width: '20px',
+                                            position: 'absolute',
+                                            marginTop: marginTopValue, // Apply marginTop here
+                                            marginLeft: `${14 + j * 21}px`
+                                        }}
+                                        alt={`Star ${j + 1}`}
+                                    />
+                                );
+                            } else {
+                                starImages.push(
+                                    <img
+                                        key={`star-${j}`}
+                                        src='../assets/UI/stars/star.png'
+                                        style={{
+                                            width: '20px',
+                                            position: 'absolute',
+                                            marginTop: marginTopValue, // Apply marginTop here
+                                            marginLeft: `${14 + j * 21}px`,
+                                            filter: 'grayscale(100%)',
+                                            filter: 'brightness(0.5) grayscale(100%)'
+                                        }}
+                                        alt={`Star ${j + 1}`}
+                                    />
+                                );
+                            }
                         }
                     }
+                    
     
                     return (
                         <div key={levelNumber} style={buttonStyle} className='levelButtonStyle'>
