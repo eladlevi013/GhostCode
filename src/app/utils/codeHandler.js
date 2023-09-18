@@ -110,7 +110,9 @@ export function handlingCodeRec(scene, code) {
     if (node.type === 'playerId_move') {
       const playerName = node.playerName.join('');
       const playerList = scene.players;
-    
+      
+      console.log(playerList);
+
       if (playerList.ghosts.map(ghost => ghost.name).includes(playerName)) {
         const foundPlayer = playerList.ghosts.find(player => player.name === playerName);
         if (node.statement.type === 'step') {

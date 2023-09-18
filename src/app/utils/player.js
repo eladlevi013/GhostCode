@@ -1,8 +1,5 @@
 // regardless of the player type, the player will move forward
-// regardless of the player type, the player will move forward
 export function movePlayerForward(steps = 0, scene, player, playerType = "ghost") {
-console.log("steps: " + steps + " playerType: " + playerType + " player: " + player);
-
   return new Promise((resolve) => {
     let velocity = null;
 
@@ -34,13 +31,6 @@ console.log("steps: " + steps + " playerType: " + playerType + " player: " + pla
       // idle animation by player type
       if(playerType == "mouse")
         player.anims.play('mouse_idle');
-
-      // Update the meter's starting point based on the player's movement
-      if (scene.meterStarting) {
-        scene.meterStarting.x += velocity.x * steps;
-        scene.meterStarting.y += velocity.y * steps;
-      }
-
       resolve();
     });
   });
@@ -133,6 +123,7 @@ export function createPlayer(scene, locations)
   // itearting array while creating the players
   for (let i = 0; i < locations.length; i++) {
     const location = locations[i];
+    let player = null;
 
     if (locations[i].type === "ghost") {
       createGhostAnimations(scene, i);
