@@ -16,15 +16,16 @@ multiplicativeExp
   / primaryExp
 
 primaryExp
-  = "(" _ exp:exp _ ")" { return exp; }
-  / NUMBER
+  = number:NUMBER { return { type: 'number', value: parseFloat(number) }; }
+  / id:ID { return { type: 'id', value: id }; }
+  / "(" _ exp:exp _ ")" { return exp; }
 
 e = "ghosts" "[" _ ghostId:exp _ "]" _ "." _ statement:e
   { return { type: 'ghosts', ghostId, statement }; }
+  /  playerName:ID  "."  statement:e
+  { return { type: 'playerId_move', playerName, statement }; }
   / "mouse" "[" _ ghostId:exp _ "]" _ "." _ statement:e
   { return { type: 'mouse', ghostId, statement }; }
-  / "fish" "." _ "step" _ "(" _ value:exp _ ")" _ next:e
-  { return { type: 'fish', value, next }; }
   / statement
   / loopExp
   / "" { return null; }

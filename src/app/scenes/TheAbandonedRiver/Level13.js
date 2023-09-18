@@ -9,7 +9,7 @@ const collectables_locations = [{type: "gem", x: 222, y: 730},
 {type: "gem", x: 490, y: 413}, {type: "gem", x: 222, y: 413}];
 const players_locations = [{type: "ghost", x: 222, y: 625, name: "Herold"}, 
   {type: "ghost", x: 490, y: 720, name: "Henri"}, 
-  {type: "fish", x: 190, y: 290, name: "Finn", flip: true}];
+  {type: "fish", x: 190, y: 290, name: "Bob", flip: true}];
 
 export default class Level13 extends TheAbandonedRiverBaseLevel {
   constructor() {

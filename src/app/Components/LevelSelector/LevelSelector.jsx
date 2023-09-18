@@ -61,7 +61,8 @@ export default function LevelSelector(props) {
                         pointerEvents: isLevelAccessible ? 'auto' : 'none',
                     };
 
-                    const starImages = [];  
+                    const starImages = [];
+                    
                     if (i + worldIndex * 5 <= currentAccountLevel) {
                         for (let j = 0; j < 3; j++) {
                             let marginTopValue = j === 1 ? '-26px' : '-32px'; // Adjusted marginTop for index 1
@@ -74,7 +75,7 @@ export default function LevelSelector(props) {
                                         style={{
                                             width: '23px',
                                             position: 'absolute',
-                                            marginTop: marginTopValue, // Apply marginTop here
+                                            marginTop: marginTopValue,
                                             marginLeft: `${12 + j * 21}px`
                                         }}
                                         alt={`Star ${j + 1}`}
@@ -88,7 +89,7 @@ export default function LevelSelector(props) {
                                         style={{
                                             width: '23px',
                                             position: 'absolute',
-                                            marginTop: marginTopValue, // Apply marginTop here
+                                            marginTop: marginTopValue,
                                             marginLeft: `${12 + j * 21}px`,
                                             filter: 'grayscale(100%)',
                                             filter: 'brightness(0.5) grayscale(100%)'
@@ -99,7 +100,6 @@ export default function LevelSelector(props) {
                             }
                         }
                     }
-                    
                     return (
                         <div key={levelNumber} style={buttonStyle} className='levelButtonStyle'>
                             <img

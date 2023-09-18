@@ -61,11 +61,6 @@ export function handlingCodeRec(scene, code) {
       return;
     }
     
-    if(node.type == 'fish')
-    {
-      await movePlayerForward(evaluateExpression(node.mathExp), scene, scene.players.fish, "fish");
-    }
-
     if (node.type === 'ghosts' || node.type === 'mouse')
     {
       const action = node.statement;
@@ -111,14 +106,49 @@ export function handlingCodeRec(scene, code) {
         variables[node.var] = i+1;
       }
       delete variables.i;
+    } // inside iterateAST
+    if (node.type === 'playerId_move') {
+      const playerName = node.playerName.join('');
+      const playerList = scene.players;
+    
+      if (playerList.ghosts.map(ghost => ghost.name).includes(playerName)) {
+        const foundPlayer = playerList.ghosts.find(player => player.name === playerName);
+        if (node.statement.type === 'step') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await movePlayerForward(expressionResult, scene, foundPlayer, "ghost");
+        } else if (node.statement.type === 'turn') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await rotatePlayerTo(expressionResult, scene, foundPlayer);
+        }
+      } else if (playerList.mice.map(mouse => mouse.name).includes(playerName)) {
+        const foundPlayer = playerList.mice.find(player => player.name === playerName);
+        if (node.statement.type === 'step') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await movePlayerForward(expressionResult, scene, foundPlayer, "mouse");
+        } else if (node.statement.type === 'turn') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await rotatePlayerTo(expressionResult, scene, foundPlayer);
+        }
+      } else if (playerList.fish.name === playerName) {
+        if (node.statement.type === 'step') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await movePlayerForward(expressionResult, scene, playerList.fish, "fish");
+        } else if (node.statement.type === 'turn') {
+          const expressionResult = evaluateExpression(node.statement.value);
+          await rotatePlayerTo(expressionResult, scene, playerList.fish);
+        }
+      } else {
+        console.error('Player not found:', playerName);
+      }
     }
+    
 
-    // iterating next node of
-    if (node.type === 'ghosts' || node.type === 'mouse') {
-      await iterateAST(node.statement.next);
-    } else {
-      await iterateAST(node.next);
-    }
+  // iterating next node of
+  if (node.type === 'ghosts' || node.type === 'mouse' || node.type === 'playerId_move') {
+    await iterateAST(node.statement.next);
+  } else {
+    await iterateAST(node.next);
+  }
   };
 
   if (scene.movingTimer) {
