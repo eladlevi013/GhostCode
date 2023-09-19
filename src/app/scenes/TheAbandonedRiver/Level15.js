@@ -8,11 +8,12 @@ import TheAbandonedRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
 const collectables_locations = [{type: "gem", x: 222, y: 730},
 {type: "gem", x: 490, y: 413}, {type: "gem", x: 222, y: 413}];
 const players_locations = [{type: "ghost", x: 222, y: 625, name: "Herold"}, 
-  {type: "ghost", x: 490, y: 720, name: "Henri"}];
+  {type: "ghost", x: 490, y: 720, name: "Henri"}, 
+  {type: "fish", x: 190, y: 290, name: "Bob", flip: true}];
 
 export default class Level15 extends TheAbandonedRiverBaseLevel {
   constructor() {
-    super(15,3, collectables_locations, {best: 6, minumum: 7});
+    super(15,3, collectables_locations, {best: 5, minumum: 6});
   }
 
   create() {
@@ -25,22 +26,6 @@ export default class Level15 extends TheAbandonedRiverBaseLevel {
     // creating player, gems and UI elements
     createPlayer(this, players_locations);
     createCollectables(this, collectables_locations);
-
-    // fish animation
-    this.anims.create({
-      key: 'fish_idle',
-      frames: this.anims.generateFrameNumbers('fish', { start: 0, end: 19 }),
-      frameRate: 20,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'fish_swimming',
-      frames: this.anims.generateFrameNumbers('fish_swimming', { start: 0, end: 14 }),
-      frameRate: 20,
-      repeat: -1
-    });
-    this.players.fish = this.physics.add.sprite(190, 290, 'fish').setScale(0.2).setDepth(1).play('fish_idle');
-    this.players.fish.flipX = true;
 
     // creating world props
     this.createWorldProps([{x: 425, y: 600}, {x: 140, y: 500}], 

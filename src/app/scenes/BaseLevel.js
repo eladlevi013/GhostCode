@@ -38,7 +38,7 @@ export default class BaseLevel extends Phaser.Scene {
         this.load.tilemapTiledJSON('map10', 'assets/levels/the_haunted_forest/map2.tmj');
         this.load.tilemapTiledJSON('map11', 'assets/levels/the_abandoned_river/map1.tmj');
         this.load.tilemapTiledJSON('map12', 'assets/levels/the_abandoned_river/map1.tmj');
-        this.load.tilemapTiledJSON('map13', 'assets/levels/the_abandoned_river/map2.tmj');
+        this.load.tilemapTiledJSON('map13', 'assets/levels/the_abandoned_river/map1.tmj');
         this.load.tilemapTiledJSON('map14', 'assets/levels/the_abandoned_river/map2.tmj');
         this.load.tilemapTiledJSON('map15', 'assets/levels/the_abandoned_river/map2.tmj');
         this.load.tilemapTiledJSON('map16', 'assets/levels/ghostly_cabin/map1.tmj');

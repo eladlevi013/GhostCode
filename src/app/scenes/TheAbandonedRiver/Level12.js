@@ -2,20 +2,21 @@ import { createUIElements, collideTileMapLayer } from '../../utils/uiHandler.js'
 import { createPlayer } from '../../utils/player.js';
 import { createCollectables } from '../../utils/collectablesHandler.js';
 import { handlingCode } from '../../utils/codeHandler.js';
-import TheAbandonedRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
+import TheAbandenRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
 
 // constants
-const collectables_locations = [{type: "gem", x: 222, y: 150},
-{type: "gem", x: 490, y: 200}, {type: "gem", x: 222, y: 445}];
-const players_locations = [{type: "ghost", x: 222, y: 720, name: "Herold"}, 
-  {type: "ghost", x: 490, y: 720, name: "Henri"}];
+const collectables_locations = [{type: "gem", x: 222, y: 300},
+{type: "gem", x: 490, y: 310}, {type: "gem", x: 222, y: 505}];
+const players_locations = [{type: "ghost", x: 222, y: 720, name: 'Herold'}, 
+  {type: "ghost", x: 490, y: 720, name: 'Henri'}];
 
-export default class Level12 extends TheAbandonedRiverBaseLevel {
+export default class Level12 extends TheAbandenRiverBaseLevel {
   constructor() {
-    super(12,3, collectables_locations, {best: 3, minumum: 4});
+    super(12,3, collectables_locations, {best: 2, minumum: 3});
   }
 
   create() {
+
     // creating tilemap from json
     const map = this.make.tilemap({ key: 'map12' });
     const tileset = map.addTilesetImage('tileset', 'tiles');
@@ -24,13 +25,11 @@ export default class Level12 extends TheAbandonedRiverBaseLevel {
 
     // creating player, gems and UI elements
     createPlayer(this, players_locations);
-    createCollectables(this, collectables_locations);
+    createCollectables(this, collectables_locations); 
 
     // creating world props
-    this.createWorldProps([{x: 145, y: 550}, {x: 425, y: 400}, {x: 145, y: 250}], 
-      [{x: 475, y: 270}, {x: 210, y: 330}, {x: 475, y: 530}],
-      true, true);
-
+    this.createWorldProps([{x: 425, y: 400}], [{x: 210, y: 140}], true, true);
+    
     // making the grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);
