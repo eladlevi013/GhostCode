@@ -5,7 +5,7 @@ const PhaserGameWrapper = (props) => {
   const phaserContainerRef = useRef(null);
   useEffect(() => {
     import('phaser').then((Phaser) => {
-      const { initializePhaserGame } = require('../utils/phaserGame');
+      const { initializePhaserGame } = require('../utils/phaserSceneSetup');
       const phaserGame = initializePhaserGame(Phaser);
 
       if (phaserContainerRef.current) {

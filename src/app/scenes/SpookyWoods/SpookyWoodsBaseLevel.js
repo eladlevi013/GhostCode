@@ -1,4 +1,4 @@
-import { createUIElements } from "../../utils/uiHandler";
+import { createUIElements } from "../../utils/gameUiHandler";
 import BaseLevel from "../BaseLevel";
 
 export default class SpookyWoodsBaseLevel extends BaseLevel {

@@ -1,4 +1,4 @@
-import { handlingCode } from "../utils/codeHandler";
+import { handlingCode } from "../utils/codeProcessHandler";
 
 export default class BaseLevel extends Phaser.Scene {
     constructor(levelNumber, totalCollectables, gems, worldName, ranking) {

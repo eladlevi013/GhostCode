@@ -1,4 +1,4 @@
-import { showFinishLevelPanel } from './endPanelHandler.js';
+import { showFinishLevelPanel } from './levelFinishHandler.js';
 
 export function createCollectables(scene, collectablesLocations, size = -1) {
   let cheese = scene.physics.add.group({});
@@ -6,31 +6,26 @@ export function createCollectables(scene, collectablesLocations, size = -1) {
   createGemAnimation(scene);
 
   // creating collectables
-  for (let i = 0; i < collectablesLocations.length; i++)
-  {
+  for (let i = 0; i < collectablesLocations.length; i++) {
     let location = collectablesLocations[i];
-    if(collectablesLocations[i].type === "gem")
-    {
+
+    if (collectablesLocations[i].type === "gem") {
       gems.create(location.x, location.y, 'gem')
         .setScale(0.17).anims.play('gemRotation');
-    }
-    else if(collectablesLocations[i].type === "cheese")
-    {
+    } else if (collectablesLocations[i].type === "cheese") {
       cheese.create(location.x, location.y,
         `cheese_${Math.floor(Math.random() * 2) + 1}`).setScale(0.08);
     }
   }
 
   // making the gems collectable
-  for(let i = 0; i<scene.players.ghosts.length; i++)
-  {
+  for (let i = 0; i<scene.players.ghosts.length; i++) {
     scene.physics.add.overlap(scene.players.ghosts[i].getAt(0), gems,
     (player, object) => collect(player, object, scene), null, scene);
   }
 
   // making the cheese collectable
-  for(let i = 0; i<scene.players.mice.length; i++)
-  {
+  for (let i = 0; i<scene.players.mice.length; i++) {
     scene.physics.add.overlap(scene.players.mice[i].getAt(0), cheese,
     (player, object) => collect(player, object, scene), null, scene);
   }
@@ -47,25 +42,21 @@ export function createGemAnimation(scene) {
 } 
 
 // collecting gems functionality
-function collect(player, object, scene)
-{
+function collect(player, object, scene) {
   object.disableBody(true, true);
   scene.collectablesCounter += 1;
 
   // when level is over
-  if(scene.collectablesCounter == scene.totalCollectables)
-  {
+  if (scene.collectablesCounter == scene.totalCollectables) {
     scene.time.delayedCall(100, () => {
       player.setVelocity(0, 0);
     });
 
     // open end game panel
-    scene.time.delayedCall(600, () => 
-    {
+    scene.time.delayedCall(600, () => {
       // calculate ranking
       let stars = scene.ranking.best >= scene.lineNumber.value ? 3
         : scene.ranking.minumum > scene.lineNumber.value ? 2 : 1;
-      
       // show finished level panel
       showFinishLevelPanel(scene, stars);
     }, null, scene);

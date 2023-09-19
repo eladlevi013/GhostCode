@@ -1,4 +1,4 @@
-import { collideTileMapLayer } from '../../utils/uiHandler.js';
+import { collideTileMapLayer } from '../../utils/gameUiHandler.js';
 import { createPlayer } from '../../utils/player.js';
 import { createCollectables } from '../../utils/collectablesHandler.js';
 import TheHauntedForestBaseLevel from './TheHauntedForestBaseLevel.js';

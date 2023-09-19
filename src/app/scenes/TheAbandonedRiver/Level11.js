@@ -1,4 +1,4 @@
-import { createUIElements, collideTileMapLayer } from '../../utils/uiHandler.js';
+import { createUIElements, collideTileMapLayer } from '../../utils/gameUiHandler.js';
 import { createPlayer } from '../../utils/player.js';
 import { createCollectables } from '../../utils/collectablesHandler.js';
 import TheAbandenRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
