@@ -1,4 +1,4 @@
-import { createUIElements } from "../../phaserUtils/gameUiHandler";
+import { createUIElements, collideTileMapLayer } from '../../phaserUtils/UI/gameUiHandler.js';
 import BaseLevel from "../BaseLevel";
 
 export default class TheAbandonedRiverBaseLevel extends BaseLevel {

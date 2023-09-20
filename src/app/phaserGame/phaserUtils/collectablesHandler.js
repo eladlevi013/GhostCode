@@ -1,4 +1,4 @@
-import { showFinishLevelPanel } from './levelFinishHandler.js';
+import { showFinishLevelPanel } from './UI/levelFinishHandler.js';
 
 export function createCollectables(scene, collectablesLocations, size = -1) {
   let cheese = scene.physics.add.group({});

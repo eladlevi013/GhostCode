@@ -1,4 +1,4 @@
-import {createMeter} from './meterHandler.js';
+import {createMeter} from '../meterHandler.js';
 
 export function createMapIcon(scene) {
     scene.add.image(585, 20, 'map_button')

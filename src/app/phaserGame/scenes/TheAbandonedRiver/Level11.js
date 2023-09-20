@@ -1,4 +1,4 @@
-import { createUIElements, collideTileMapLayer } from '../../phaserUtils/gameUiHandler.js';
+import { createUIElements, collideTileMapLayer } from '../../phaserUtils/UI/gameUiHandler.js';
 import { createPlayer } from '../../phaserUtils/player/playerCreator.js';
 import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
 import TheAbandenRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
