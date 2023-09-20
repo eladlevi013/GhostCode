@@ -12,18 +12,18 @@ export function createMouseAnimations(scene) {
   
 export function createGhostAnimations(scene, index) {
     createAnimation(scene, GHOST_APPEAR_ANIMATION, 'ghost', 'appear_00', 1, 6, 0);
-    createAnimation(scene, GHOST_IDLE_ANIMATION, 'ghost', 'idle_00', 1, 19, -1);
+    createAnimation(scene, GHOST_IDLE_ANIMATION, 'ghost', 'idle_00', 1, 19, -1, 20);
 }
   
 export function createFishAnimations(scene) {
-    createAnimation(scene, FISH_IDLE_ANIMATION, 'fish', '', 0, 19, -1);
-    createAnimation(scene, FISH_SWIMMING_ANIMATION, 'fish_swimming', '', 0, 14, -1);
+    createAnimation(scene, FISH_IDLE_ANIMATION, 'fish', '', 0, 19, -1, 20);
+    createAnimation(scene, FISH_SWIMMING_ANIMATION, 'fish_swimming', '', 0, 14, -1, 20);
 }
   
-function createAnimation(scene, key, texture, prefix, start, end, repeat) {
+function createAnimation(scene, key, texture, prefix, start, end, repeat, frameRate = 10) {
     scene.anims.create({
         key,
-        frameRate: 10,
+        frameRate: frameRate,
         frames: scene.anims.generateFrameNames(texture, {
         prefix,
         start,
