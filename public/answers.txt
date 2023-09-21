@@ -89,19 +89,25 @@ loop(5):i
 }
 
 level13:
-fish.step(15)
-ghosts[1].step(15)
-loop(2):i{
-  ghosts[0].turn(180)
-  ghosts[0].step(5+i*10)
+loop(5):i
+{
+  ghosts[i%2].step(15)
 }
 
 level14:
-~not-exists~
+Bob.step(15)
+loop(2):i {
+  Herold.turn(180)
+  Herold.step(i * 10 + 10)
+}
 
 level15:
-~not-exists~
-
+Bob.step(15)
+Henri.step(15)
+loop(2):i{
+  Herold.turn(180)
+  Herold.step(5+i*10)
+}
 --------------- WORLD 4 --------------- 
 level16:
 loop(3):i
@@ -130,4 +136,7 @@ loop(4):i
 }
 
 level20:
-~not-exists~
+loop(4):i {
+  mouse[i%2].step(17)
+  mouse[i%2].turn(-90)
+}

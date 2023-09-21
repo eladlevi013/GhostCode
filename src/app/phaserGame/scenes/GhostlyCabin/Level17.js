@@ -8,8 +8,8 @@ const collectables_locations = [{type: "gem", x: 175, y: 220},
 {type: "gem", x: 347, y: 220}, {type: "gem", x: 519, y: 220},
 {type: "gem", x: 175, y: 420}, {type: "gem", x: 347, y: 420},
 {type: "gem", x: 519, y: 420}];
-const players_locations = [{type: "ghost", x:170, y:620}, 
-  {type: "ghost", x:342, y:620}];
+const players_locations = [{type: "ghost", x:170, y:620, name: "ghosts[0]"}, 
+  {type: "ghost", x:342, y:620, name: "ghosts[1]"}];
 
 export default class Level17 extends GhostlyCabniBaseLevel {
   constructor() {

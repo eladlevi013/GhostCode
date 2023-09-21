@@ -96,12 +96,16 @@ function buildUIButtons(scene) {
 }
 
 function goToNextLevel(scene) {
-    scene.movingTimer?.destroy();
-    scene.scene.start(`level${++scene.level}`, {
-        setLevelState: scene.setLevelState,
-        setLevelWorld: scene.setLevelWorld,
-        setLevelSelectorShow: scene.setLevelSelectorShow
-    });
+    if (scene.level === 20) {
+        location.href = '/';
+    } else {
+        scene.movingTimer?.destroy();
+        scene.scene.start(`level${++scene.level}`, {
+            setLevelState: scene.setLevelState,
+            setLevelWorld: scene.setLevelWorld,
+            setLevelSelectorShow: scene.setLevelSelectorShow
+        });
+    }
 }
 
 function showLevelSelector(scene) {
