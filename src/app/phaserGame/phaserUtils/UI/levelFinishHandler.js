@@ -96,6 +96,7 @@ function buildUIButtons(scene) {
 }
 
 function goToNextLevel(scene) {
+    // redirect to home page if the user finished all levels
     if (scene.level === 20) {
         location.href = '/';
     } else {
