@@ -4,8 +4,12 @@ import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
 import SpookyWoodsBaseLevel from './SpookyWoodsBaseLevel.js';
 
 // constants
-const collectables_locations = [{type: "gem", x: 340, y: 300},
-  {type: "gem", x: 395, y: 505}, {type: "gem", x: 285, y: 505}];
+const collectables_locations = [
+  {type: "gem", x: 285, y: 300},
+  {type: "gem", x: 410, y: 300}, 
+  {type: "gem", x: 285, y: 505}
+];
+
 const players_locations = [{type: "ghost", x: 92, y: 700}];
 
 export default class Level5 extends SpookyWoodsBaseLevel {

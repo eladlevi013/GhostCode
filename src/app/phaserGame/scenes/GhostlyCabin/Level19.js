@@ -4,10 +4,18 @@ import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
 import GhostlyCabniBaseLevel from './GhostlyCabinBaseLevel.js';
 
 // constants
-const collectables_locations = [{type: "cheese", x:545, y:500}, 
-  {type: "cheese", x:545, y:350}, {type: "cheese", x:125, y:400}];
-const players_locations = [{type: "mouse", x:125, y:675}, {type: "mouse",
-  x:265, y:675}, {type: "mouse", x:405, y:675}, {type: "mouse", x:545, y:675}];
+const collectables_locations = [
+  {type: "cheese", x:545, y:500}, 
+  {type: "cheese", x:545, y:350}, 
+  {type: "cheese", x:125, y:400}
+];
+
+const players_locations = [
+  {type: "mouse", x:125, y:675, name: "mouse[0]"}, 
+  {type: "mouse", x:265, y:675, name: "mouse[1]"},
+  {type: "mouse", x:405, y:675, name: "mouse[2]"},
+  {type: "mouse", x:545, y:675, name: "mouse[3]"}
+];
 
 export default class Level19 extends GhostlyCabniBaseLevel {
   constructor() {
