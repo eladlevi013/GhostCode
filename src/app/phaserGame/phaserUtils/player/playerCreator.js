@@ -58,7 +58,17 @@ export function createPlayer(scene, locations) {
     container.name = location.name;
     scene.physics.world.enable([container, player]);
     scene.physics.world.enableBody(container);
+    
+    let playerType;
 
-    scene.players[location.type + 's'].push(container);
+    if (location.type === 'ghost') {
+      playerType = 'ghosts';
+    } else if (location.type === 'mouse') {
+      playerType = 'mice';
+    } else if (location.type === 'fish') {
+      playerType = 'fish';
+    }
+    
+    scene.players[playerType].push(container);
   });
 }
