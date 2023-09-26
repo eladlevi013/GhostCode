@@ -56,7 +56,7 @@ function collect(player, object, scene) {
     scene.time.delayedCall(600, () => {
       // calculate ranking
       let stars = scene.ranking.best >= scene.lineNumber.value ? 3
-        : scene.ranking.minumum > scene.lineNumber.value ? 2 : 1;
+        : scene.ranking.minimum > scene.lineNumber.value ? 2 : 1;
       // show finished level panel
       showFinishLevelPanel(scene, stars);
     }, null, scene);

@@ -1,4 +1,5 @@
 import { handlingCode } from "../phaserUtils/codeProcessHandler";
+import { PLAYER_TYPES } from "../phaserUtils/player/playerConstants";
 
 export default class BaseLevel extends Phaser.Scene {
     constructor(levelNumber, totalCollectables, collectables, worldName, ranking) {
@@ -50,7 +51,7 @@ export default class BaseLevel extends Phaser.Scene {
         this.load.image('tileset_dark', 'assets/levels/the_haunted_forest/tileset_dark.png');
         this.load.image('tileset_wood', 'assets/levels/ghostly_cabin/tileset_wood.png');
         // Loading players
-        this.load.atlas('ghost', 'assets/players/ghost/ghost.png', 
+        this.load.atlas(PLAYER_TYPES.GHOST, 'assets/players/ghost/ghost.png', 
             'assets/players/ghost/ghost.json');
         this.load.spritesheet('fish', 'assets/fish/anchovy_idle.png',
             { frameWidth: 503, frameHeight: 169 }),

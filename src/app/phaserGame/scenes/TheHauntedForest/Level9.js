@@ -1,19 +1,22 @@
-import { createUIElements, collideTileMapLayer } from '../../phaserUtils/UI/gameUiHandler.js';
+import { PLAYER_TYPES } from '../../phaserUtils/player/playerConstants.js';
+import { collideTileMapLayer } from '../../phaserUtils/UI/gameUiHandler.js';
 import { createPlayer } from '../../phaserUtils/player/playerCreator.js';
 import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
 import TheHauntedForestBaseLevel from './TheHauntedForestBaseLevel.js';
 
 // constants
-let x = 45;
-let y = 50;
-const collectables_locations = [{type: "gem", x: 300 + x, y: 300 + y}, {type: "gem", x: 500 + x, y: 300 +y},
- {type: "gem", x: 500 + x, y: 600 + y}, {type: "gem", x: 100 + x, y: 600 + y}, {type: "gem", x: 100 + x, y: 110 +y}];
-const players_locations = [{type: "ghost", x: 300 + x, y: 400 + y}];
+const COLLECTABLES_LOCATIONS = [
+  {type: "gem", x: 345, y: 350},
+  {type: "gem", x: 545, y: 350},
+  {type: "gem", x: 545, y: 650},
+  {type: "gem", x: 145, y: 650},
+  {type: "gem", x: 145, y: 160}
+];
+const PLAYERS_LOCATIONS = [{type: PLAYER_TYPES.GHOST, x: 345, y: 450}];
 
 export default class Level9 extends TheHauntedForestBaseLevel {
-
   constructor() {
-    super(9,5, collectables_locations, {best: 3, minumum: 5});
+    super(9, 5, COLLECTABLES_LOCATIONS, {best: 3, minimum: 5});
   }
 
   create() {
@@ -22,14 +25,11 @@ export default class Level9 extends TheHauntedForestBaseLevel {
     const tileset = map.addTilesetImage('tileset', 'tileset_dark');
     const groundLayer = map.createLayer('ground', tileset, 0, 0);
     const grassLayer = map.createLayer('grass', tileset, 0, 0);
-    
     // creating world props
     this.createWorldProps(false, false);
-
-    // creating player, gems and UI elements
-    createPlayer(this, players_locations);
-    createCollectables(this, collectables_locations);
-
+    // creating player, gems, and UI elements
+    createPlayer(this, PLAYERS_LOCATIONS);
+    createCollectables(this, COLLECTABLES_LOCATIONS);
     // making the grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);

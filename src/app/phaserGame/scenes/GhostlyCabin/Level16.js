@@ -2,16 +2,25 @@ import { createUIElements, collideTileMapLayer } from '../../phaserUtils/UI/game
 import { createPlayer } from '../../phaserUtils/player/playerCreator.js';
 import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
 import GhostlyCabniBaseLevel from './GhostlyCabinBaseLevel.js';
+import { PLAYER_TYPES } from '../../phaserUtils/player/playerConstants.js';
 
-// constants
-const collectables_locations = [{type: "cheese", x: 175, y: 300}, 
-{type: "cheese", x: 347, y: 300}, {type: "cheese", x: 519, y: 300}];
-const players_locations = [{type: "mouse", x:170, y:620, name: "mouse[0]"}, 
-  {type: "mouse", x:342, y:620, name: "mouse[1]"}, {type: "mouse", x: 514, y: 620, name: "mouse[2]"}];
+// Constants
+const COLLECTABLES_LOCATIONS = [
+  {type: "cheese", x: 175, y: 300}, 
+  {type: "cheese", x: 347, y: 300}, 
+  {type: "cheese", x: 519, y: 300}
+];
+
+// Assuming PLAYER_TYPES is available globally or imported
+const PLAYERS_LOCATIONS = [
+  {type: PLAYER_TYPES.MOUSE, x:170, y:620, name: "mouse[0]"}, 
+  {type: PLAYER_TYPES.MOUSE, x:342, y:620, name: "mouse[1]"}, 
+  {type: PLAYER_TYPES.MOUSE, x: 514, y: 620, name: "mouse[2]"}
+];
 
 export default class Level16 extends GhostlyCabniBaseLevel {
   constructor() {
-    super(16,3, collectables_locations, {best: 3, minumum: 4});
+    super(16, 3, COLLECTABLES_LOCATIONS, {best: 3, minimum: 4});
   }
 
   create() {
@@ -19,13 +28,12 @@ export default class Level16 extends GhostlyCabniBaseLevel {
     const tileset = map.addTilesetImage('tileset', 'tileset_wood');
     const grassLayer = map.createLayer('grass', tileset, -8, -10);
     this.add.image(0, 0, 'wood').setOrigin(0).setScale(1, 0.99).setDepth(-1);
-
-    // creating player, gems and UI elements
-    createPlayer(this, players_locations);
+    // Creating player, UI elements and collectables
+    createPlayer(this, PLAYERS_LOCATIONS);
     createUIElements(this);
-    createCollectables(this, collectables_locations);
+    createCollectables(this, COLLECTABLES_LOCATIONS);
     this.createWorldProps({x: 100, y: 90});
-    // making the grass layer collidable with the player
+    // Making the grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);
   }

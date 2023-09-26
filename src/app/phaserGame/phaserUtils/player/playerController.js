@@ -1,4 +1,6 @@
-export function movePlayerForward(steps = 0, scene, player, playerType = "ghost") {
+import { PLAYER_TYPES } from "./playerConstants";
+
+export function movePlayerForward(steps = 0, scene, player, playerType = PLAYER_TYPES.GHOST) {
     return new Promise((resolve) => {
         let velocity = null;
 
@@ -8,7 +10,7 @@ export function movePlayerForward(steps = 0, scene, player, playerType = "ghost"
 
         const rotation = player.getAt(0).rotation;
 
-        if (playerType === "fish") {
+        if (playerType === PLAYER_TYPES.FISH) {
             velocity = new Phaser.Math.Vector2(200, 0).rotate(rotation);
         } else {
             velocity = new Phaser.Math.Vector2(0, -200).rotate(rotation);
@@ -16,7 +18,7 @@ export function movePlayerForward(steps = 0, scene, player, playerType = "ghost"
 
         player.body.setVelocity(velocity.x, velocity.y);
 
-        if (playerType === "mouse") {
+        if (playerType === PLAYER_TYPES.MOUSE) {
             player.anims.play('mouse_walk');
         }
 
@@ -24,7 +26,7 @@ export function movePlayerForward(steps = 0, scene, player, playerType = "ghost"
             player.body.setVelocity(0, 0);
             scene.movingTimer = null;
 
-            if (playerType === "mouse") {
+            if (playerType === PLAYER_TYPES.MOUSE) {
                 player.anims.play('mouse_idle');
             }
 
