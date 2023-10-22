@@ -28,7 +28,7 @@
   margin-top: 60px;
   outline: none;
   border: none;
-  overflow-x: scroll;
+  overflow-x: hidden;
   white-space: nowrap;
   background-color: #3f4147;
   letter-spacing: 0.75px;
