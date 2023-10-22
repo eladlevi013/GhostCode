@@ -1,14 +1,14 @@
-"use client"
+"use client";
 // styles
-import './navbar.css';
+import "./navbar.css";
 // importing stores
-import useTokenStore from '../../stores/useTokenStore';
-import useAuthModalStore from '../../stores/useAuthModalStore';
-import useProgressStore from '../../stores/useProgressStore';
-import useBadgeModalStore from '@/app/stores/useBadgeModalStore';
-import useAccountDataStore from '@/app/stores/useAccountDataStore';
+import useTokenStore from "../../stores/useTokenStore";
+import useAuthModalStore from "../../stores/useAuthModalStore";
+import useProgressStore from "../../stores/useProgressStore";
+import useBadgeModalStore from "@/app/stores/useBadgeModalStore";
+import useAccountDataStore from "@/app/stores/useAccountDataStore";
 // import constants
-import {badges} from '@/app/constants';
+import { badges } from "@/app/constants";
 
 export default function Navbar() {
   // loading stores
@@ -18,55 +18,69 @@ export default function Navbar() {
   const setAuthPanelMode = useAuthModalStore((state) => state.setAuthPanelMode);
   const currentLevel = useProgressStore((state) => state.currentLevel);
   const currentWorld = useProgressStore((state) => state.currentWorld);
-  const setBadgeModalShow = useBadgeModalStore((state) => state.setBadgeModalShow);
+  const setBadgeModalShow = useBadgeModalStore(
+    (state) => state.setBadgeModalShow
+  );
   const accountData = useAccountDataStore((state) => state.accountData);
 
   // handling login popup
   const handleLoginRedirect = () => {
     setAuthPanelShow(true);
-    setAuthPanelMode('login');
-  }
+    setAuthPanelMode("login");
+  };
 
   // handling badge modal
   const handleBadgeModal = () => {
     setBadgeModalShow(true);
-  }
+  };
 
   return (
     <>
-      <div className='mainContainer'>
-        <div className='mainTitleContainer'>
-          <a href="/" className='aTitleContainer'>
+      <div className="mainContainer">
+        <div className="mainTitleContainer">
+          <a href="/" className="aTitleContainer">
             GHOSTCODE
           </a>
         </div>
 
-        {
-          token && token != "null" ? (
-            <div>
-              <p className='badgeContainer'>
-                <img onClick={handleBadgeModal} style={{cursor: "pointer"}} width={"50px"}
-                  src={accountData ? `assets/badges/${badges[parseInt((accountData?.
-                  currentLevel - 1) / 5)] }.png` : null}/>
-              </p>
-              <p onClick={() => { clearToken(); window.location.href = '/'; }}
-                className='logoutContainer'>logout</p>
-              { currentLevel > 0 ? (
-                <p className='worldContainer'>
-                  {currentWorld} - Level {currentLevel}
-                </p>) : null
-              }
-              <p className='emailContainer'>
-                {accountData?.username}
-              </p>
-            </div>
-          ) : (
-            <p className='loginContainer'
-              onClick={handleLoginRedirect}>
-              login
+        {token && token != "null" ? (
+          <div>
+            <p className="badgeContainer">
+              <img
+                onClick={handleBadgeModal}
+                style={{ cursor: "pointer" }}
+                width={"50px"}
+                src={
+                  accountData
+                    ? `assets/badges/${
+                        badges[parseInt((accountData?.currentLevel - 1) / 5)]
+                      }.png`
+                    : null
+                }
+              />
             </p>
-          )}
+            <p
+              onClick={() => {
+                clearToken();
+                window.location.href = "/";
+              }}
+              className="logoutContainer"
+            >
+              logout
+            </p>
+            {currentLevel > 0 ? (
+              <p className="worldContainer">
+                {currentWorld} - Level {currentLevel}
+              </p>
+            ) : null}
+            <p className="emailContainer">{accountData?.username}</p>
+          </div>
+        ) : (
+          <p className="loginContainer" onClick={handleLoginRedirect}>
+            login
+          </p>
+        )}
       </div>
     </>
-  )
+  );
 }
