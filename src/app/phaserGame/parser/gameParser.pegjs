@@ -23,8 +23,20 @@ exp
   = additiveExp
 
 additiveExp
-  = left:primaryExp _ ("+" / "-")? _ right:additiveExp?
-    { return right ? { type: 'binaryOp', operator:text(), left, right }:left; }
+  = left:multiplicativeExp _ "+" _ right:additiveExp
+    { return { type: 'binaryOp', operator: '+', left, right }; }
+  / left:multiplicativeExp _ "-" _ right:additiveExp
+    { return { type: 'binaryOp', operator: '-', left, right }; }
+  / multiplicativeExp
+
+multiplicativeExp
+  = left:primaryExp _ "*" _ right:multiplicativeExp
+    { return { type: 'binaryOp', operator: '*', left, right }; }
+  / left:primaryExp _ "/" _ right:multiplicativeExp
+    { return { type: 'binaryOp', operator: '/', left, right }; }
+  / left:primaryExp _ "%" _ right:multiplicativeExp
+    { return { type: 'binaryOp', operator: '%', left, right }; }
+  / primaryExp
 
 primaryExp
   = number:number

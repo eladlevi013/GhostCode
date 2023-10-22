@@ -225,7 +225,7 @@ export function handlingCodeRec(scene, code) {
     if (
       node.playerType === PLAYER_TYPES.GHOST ||
       node.playerType === PLAYER_TYPES.MOUSE ||
-      node.playerType === "playerId"
+      node.type === "playerId"
     ) {
       await iterateAST(node.statement.next);
     } else {
