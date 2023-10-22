@@ -4,7 +4,7 @@ Welcome to GhostCode, where programming meets the supernatural in a chilling cod
 
 ## Demo of the Game
 <p align="center" width="100%">
-  <img src="https://github.com/eladlevi013/GhostCode/blob/main/public/ghostcode_gif.gif" width="100%">
+  <img src="https://github.com/eladlevi013/GhostCode/blob/main/public/demo.gif" width="90%">
   </br></br>
 </p>
 
