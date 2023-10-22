@@ -16,9 +16,9 @@ const COLLECTABLES_LOCATIONS = [
 
 // Assuming PLAYER_TYPES is available globally or imported
 const PLAYERS_LOCATIONS = [
-  { type: PLAYER_TYPES.MOUSE, x: 170, y: 620, name: "mouse[0]" },
-  { type: PLAYER_TYPES.MOUSE, x: 342, y: 620, name: "mouse[1]" },
-  { type: PLAYER_TYPES.MOUSE, x: 514, y: 620, name: "mouse[2]" },
+  { type: PLAYER_TYPES.MOUSE, x: 170, y: 620, name: "mice[0]" },
+  { type: PLAYER_TYPES.MOUSE, x: 342, y: 620, name: "mice[1]" },
+  { type: PLAYER_TYPES.MOUSE, x: 514, y: 620, name: "mice[2]" },
 ];
 
 export default class Level16 extends GhostlyCabniBaseLevel {

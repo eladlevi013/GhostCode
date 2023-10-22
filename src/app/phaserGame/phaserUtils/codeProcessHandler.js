@@ -42,7 +42,7 @@ function evaluateExpression(node) {
     }
   } else if (type === "number") {
     return parseInt(value);
-  } else if (type === "id") {
+  } else if (type === "identifier") {
     if (variables.hasOwnProperty(value)) {
       return variables[value];
     } else {
@@ -97,7 +97,9 @@ export function handlingCodeRec(scene, code) {
     // entity array handling
     if (node.type == "array") {
       const action = node.statement;
+      console.log(node.index);
       const index = evaluateExpression(node.index);
+      console.log("index: " + index);
       let player = null;
 
       // get the player from the right array
