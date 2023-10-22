@@ -1,32 +1,53 @@
-import { movePlayerForward, rotatePlayerTo } from './player/playerController.js';
-import pegParser from '../parser/gameParser.js';
+import {
+  movePlayerForward,
+  rotatePlayerTo,
+} from "./player/playerController.js";
+import pegParser from "../parser/gameParser.js";
+import toast from "react-hot-toast";
+import {
+  PLAYER_TYPES,
+  PLAYER_ACTIONS,
+  LOOP_TYPES,
+} from "./player/playerConstants.js";
 
+// A utility function to show error toast
+const showErrorToast = (message) => {
+  toast.error(message, {
+    style: {
+      fontSize: "16px",
+    },
+  });
+};
+
+// variables used on loop var
 const variables = {};
 
-// evaluating expressions used on various locations on the grammer
 function evaluateExpression(node) {
-  if (node.type === 'binaryOp') {
-    const leftValue = evaluateExpression(node.left);
-    const rightValue = evaluateExpression(node.right);
-      
-    if (node.operator === '+') {
+  const { type, operator, left, right, value } = node;
+
+  if (type === "binaryOp") {
+    const leftValue = evaluateExpression(left);
+    const rightValue = evaluateExpression(right);
+
+    if (operator === "+") {
       return leftValue + rightValue;
-    } else if (node.operator === '-') {
+    } else if (operator === "-") {
       return leftValue - rightValue;
-    } else if (node.operator === '*') {
+    } else if (operator === "*") {
       return leftValue * rightValue;
-    } else if (node.operator === '/') {
+    } else if (operator === "/") {
       return parseInt(leftValue / rightValue);
-    } else if (node.operator === '%') {
+    } else if (operator === "%") {
       return leftValue % rightValue;
     }
-  } else if (node.type === 'number') {
-    return parseInt(node.value);
-  } else if (node.type === 'id') {
-    if (variables.hasOwnProperty(node.value)) {
-      return variables[node.value];
+  } else if (type === "number") {
+    return parseInt(value);
+  } else if (type === "identifier") {
+    if (variables.hasOwnProperty(value)) {
+      return variables[value];
     } else {
-      throw new Error(`Variable '${node.value}' not found.`);
+      showErrorToast(`Variable '${value}' not found.`);
+      return 0;
     }
   }
 }
@@ -47,115 +68,174 @@ function calculateLineNumber(ast, lineNumber) {
 }
 
 export function handlingCode(scene, code) {
-  let lineNumber = {value: 1};
-  calculateLineNumber(pegParser.parse(code), lineNumber);
-  scene.lineNumber = lineNumber;
-  handlingCodeRec(scene, code);
+  let lineNumber = { value: 1 };
+  try {
+    const parsedCode = pegParser.parse(code);
+    console.log(parsedCode);
+
+    if (parsedCode) {
+      calculateLineNumber(parsedCode, lineNumber);
+      scene.lineNumber = lineNumber;
+      handlingCodeRec(scene, parsedCode);
+    } else {
+      showErrorToast("Code is not valid.");
+    }
+  } catch (error) {
+    showErrorToast(`Code is not valid:\n ${error.message}`);
+  }
 }
 
 export function handlingCodeRec(scene, code) {
-  const ast = JSON.stringify(pegParser.parse(code));
+  const ast = code;
+  console.log(ast);
+
   const iterateAST = async (node) => {
-    if (!node)
-    {
+    if (!node) {
       return;
     }
-    
-    if (node.type === 'ghosts' || node.type === 'mouse')
-    {
+
+    // entity array handling
+    if (node.type == "array") {
       const action = node.statement;
-      const index = evaluateExpression(node.ghostId);
+      console.log(node.index);
+      const index = evaluateExpression(node.index);
+      console.log("index: " + index);
       let player = null;
 
       // get the player from the right array
-      if(node.type === 'ghosts')
+      if (node.playerType === PLAYER_TYPES.GHOST)
         player = scene.players.ghosts[index];
-      else if(node.type === 'mouse')
+      else if (node.playerType === PLAYER_TYPES.MOUSE)
         player = scene.players.mice[index];
-      if (action.type === 'step') {
-        await movePlayerForward(evaluateExpression(node.statement.value),
-          scene, player, "ghost");
-      } else if (action.type === 'turn') {
-        await rotatePlayerTo(evaluateExpression(node.statement.value),
-          scene, player);
-      }
-    } else if (node.type === 'step') {
-      // just move -the first player
-      if(scene.players.ghosts.length > 0)
-        await movePlayerForward(evaluateExpression(node.value),
-          scene, scene.players.ghosts[0], "ghost");
-      else if(scene.players.mice.length > 0)
-        await movePlayerForward(evaluateExpression(node.value), 
-          scene, scene.players.mice[0], "mouse");
-    } else if (node.type === 'turn') {
-      if(scene.players.ghosts.length > 0)
-        await rotatePlayerTo(evaluateExpression(node.value),
-          scene, scene.players.ghosts[0]);
-      else if(scene.players.mice.length > 0)
-        await rotatePlayerTo(evaluateExpression(node.value),
-          scene, scene.players.mice[0]);
-    } else if (node.type === 'loop') {
-      for (let i = 0; i < node.value; i++) {
-        await iterateAST(node.body);
-      }
-    } else if (node.type === 'loopVar') {
-      let i = 0;
-      variables[node.var] = i;
-      for (i = 0; i < node.value; i++) {
-        await iterateAST(node.body);
-        variables[node.var] = i+1;
-      }
-      delete variables.i;
-    } // inside iterateAST
-    if (node.type === 'playerId_move') {
-      const playerName = node.playerName.join('');
-      const playerList = scene.players;
-      
-      console.log(playerList);
+      else if (node.playerType === PLAYER_TYPES.FISH)
+        player = scene.players.fish[index];
 
-      if (playerList.ghosts.map(ghost => ghost.name).includes(playerName)) {
-        const foundPlayer = playerList.ghosts.find(player => player.name === playerName);
-        if (node.statement.type === 'step') {
-          const expressionResult = evaluateExpression(node.statement.value);
-          await movePlayerForward(expressionResult, scene, foundPlayer, "ghost");
-        } else if (node.statement.type === 'turn') {
-          const expressionResult = evaluateExpression(node.statement.value);
+      // if player not found
+      if (!player) {
+        showErrorToast(
+          "Player not found in array " + node.playerType + " at index " + index
+        );
+        return;
+      }
+
+      if (action.type === PLAYER_ACTIONS.STEP) {
+        await movePlayerForward(
+          evaluateExpression(node.statement.value),
+          scene,
+          player,
+          PLAYER_TYPES.GHOST
+        );
+      } else if (action.type === PLAYER_ACTIONS.TURN) {
+        await rotatePlayerTo(
+          evaluateExpression(node.statement.value),
+          scene,
+          player
+        );
+      }
+    } else if (node.type === PLAYER_ACTIONS.STEP) {
+      // get first player ghost or mouse
+      const player =
+        scene.players.ghosts[0] ||
+        scene.players.mice[0] ||
+        scene.players.fish[0];
+      const playerType = scene.players.ghosts[0]
+        ? PLAYER_TYPES.GHOST
+        : scene.players.mice[0]
+        ? PLAYER_TYPES.MOUSE
+        : PLAYER_TYPES.FISH;
+      await movePlayerForward(
+        evaluateExpression(node.value),
+        scene,
+        player,
+        playerType
+      );
+    } else if (node.type === PLAYER_ACTIONS.TURN) {
+      // get first player ghost or mouse
+      const player =
+        scene.players.ghosts[0] ||
+        scene.players.mice[0] ||
+        scene.players.fish[0];
+      await rotatePlayerTo(evaluateExpression(node.value), scene, player);
+    } else if (node.type === LOOP_TYPES.LOOP) {
+      for (let i = 0; i < node.count; i++) {
+        await iterateAST(node.body);
+      }
+    } else if (node.type === LOOP_TYPES.LOOP_VAR) {
+      let i = 0;
+      variables[node.variableId] = i;
+
+      for (i = 0; i < node.count; i++) {
+        await iterateAST(node.body);
+        variables[node.variableId] = i + 1;
+      }
+
+      delete variables.i;
+    }
+
+    if (node.type === "playerId") {
+      const playerName = node.playerName.join("");
+      const playerList = scene.players;
+
+      let foundPlayer = null;
+      let playerType = null;
+
+      if (playerList.ghosts.map((ghost) => ghost.name).includes(playerName)) {
+        foundPlayer = playerList.ghosts.find(
+          (player) => player.name === playerName
+        );
+        playerType = PLAYER_TYPES.GHOST;
+      } else if (
+        playerList.mice.map((mouse) => mouse.name).includes(playerName)
+      ) {
+        foundPlayer = playerList.mice.find(
+          (player) => player.name === playerName
+        );
+        playerType = PLAYER_TYPES.MOUSE;
+      } else if (
+        playerList.fish.map((fish) => fish.name).includes(playerName)
+      ) {
+        foundPlayer = playerList.fish.find(
+          (player) => player.name === playerName
+        );
+        playerType = PLAYER_TYPES.FISH;
+      } else {
+        toast.error("Player not found:" + playerName);
+      }
+
+      if (foundPlayer) {
+        const actionType = node.statement.type;
+        const expressionResult = evaluateExpression(node.statement.value);
+
+        if (actionType === PLAYER_ACTIONS.STEP) {
+          await movePlayerForward(
+            expressionResult,
+            scene,
+            foundPlayer,
+            playerType
+          );
+        } else if (actionType === PLAYER_ACTIONS.TURN) {
           await rotatePlayerTo(expressionResult, scene, foundPlayer);
-        }
-      } else if (playerList.mice.map(mouse => mouse.name).includes(playerName)) {
-        const foundPlayer = playerList.mice.find(player => player.name === playerName);
-        if (node.statement.type === 'step') {
-          const expressionResult = evaluateExpression(node.statement.value);
-          await movePlayerForward(expressionResult, scene, foundPlayer, "mouse");
-        } else if (node.statement.type === 'turn') {
-          const expressionResult = evaluateExpression(node.statement.value);
-          await rotatePlayerTo(expressionResult, scene, foundPlayer);
-        }
-      } else if (playerList.fish[0].name === playerName) {
-        if (node.statement.type === 'step') {
-          const expressionResult = evaluateExpression(node.statement.value);
-          await movePlayerForward(expressionResult, scene, playerList.fish[0], "fish");
-        } else if (node.statement.type === 'turn') {
-          const expressionResult = evaluateExpression(node.statement.value);
-          await rotatePlayerTo(expressionResult, scene, playerList.fish[0]);
         }
       } else {
-        console.error('Player not found:', playerName);
+        toast.error("Player not found:" + playerName);
       }
     }
-    
 
-  // iterating next node of
-  if (node.type === 'ghosts' || node.type === 'mouse' || node.type === 'playerId_move') {
-    await iterateAST(node.statement.next);
-  } else {
-    await iterateAST(node.next);
-  }
+    // iterating next node of
+    if (
+      node.playerType === PLAYER_TYPES.GHOST ||
+      node.playerType === PLAYER_TYPES.MOUSE ||
+      node.type === "playerId"
+    ) {
+      await iterateAST(node.statement.next);
+    } else {
+      await iterateAST(node.next);
+    }
   };
 
   if (scene.movingTimer) {
     scene.movingTimer.destroy();
   }
 
-  iterateAST(JSON.parse(ast));
+  iterateAST(ast);
 }

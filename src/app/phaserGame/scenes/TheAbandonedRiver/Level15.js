@@ -1,41 +1,44 @@
 import { createUIElements, collideTileMapLayer } from '../../phaserUtils/UI/gameUiHandler.js';
 import { createPlayer } from '../../phaserUtils/player/playerCreator.js';
 import { createCollectables } from '../../phaserUtils/collectablesHandler.js';
+import { PLAYER_TYPES } from '../../phaserUtils/player/playerConstants.js'; // Ensure you create and export this constant in the appropriate module
 import TheAbandonedRiverBaseLevel from './TheAbandonedRiverBaseLevel.js';
 
-// constants
-const collectables_locations = [{type: "gem", x: 222, y: 730},
-{type: "gem", x: 490, y: 413}, {type: "gem", x: 222, y: 413}];
-const players_locations = [{type: "ghost", x: 222, y: 625, name: "Herold"}, 
-  {type: "ghost", x: 490, y: 720, name: "Henri"}, 
-  {type: "fish", x: 190, y: 290, name: "Bob", flip: true}];
+// Constants
+const COLLECTABLES_LOCATIONS = [
+  { type: "gem", x: 222, y: 730 },
+  { type: "gem", x: 490, y: 413 },
+  { type: "gem", x: 222, y: 413 }
+];
+
+const PLAYERS_LOCATIONS = [
+  { type: PLAYER_TYPES.GHOST, x: 222, y: 625, name: "Herold" }, 
+  { type: PLAYER_TYPES.GHOST, x: 490, y: 720, name: "Henri" },
+  { type: PLAYER_TYPES.FISH, x: 190, y: 290, name: "Bob", flip: true }
+];
 
 export default class Level15 extends TheAbandonedRiverBaseLevel {
   constructor() {
-    super(15,3, collectables_locations, {best: 5, minumum: 6});
+    super(15, 3, COLLECTABLES_LOCATIONS, { best: 5, minimum: 6 });
   }
 
   create() {
-    // creating tilemap from json
+    // Creating tilemap from json
     const map = this.make.tilemap({ key: 'map15' });
     const tileset = map.addTilesetImage('tileset', 'tiles');
     const groundLayer = map.createLayer('ground', tileset, 0, 0);
     const grassLayer = map.createLayer('grass', tileset, 0, 0);
-
-    // creating player, gems and UI elements
-    createPlayer(this, players_locations);
-    createCollectables(this, collectables_locations);
-
-    // creating world props
-    this.createWorldProps([{x: 425, y: 600}, {x: 140, y: 500}], 
-      [{x: 480, y: 490}, {x: 480, y: 263}],
+    // Creating player, gems, and UI elements
+    createPlayer(this, PLAYERS_LOCATIONS);
+    createCollectables(this, COLLECTABLES_LOCATIONS);
+    // Creating world props
+    this.createWorldProps([{ x: 425, y: 600 }, { x: 140, y: 500 }], 
+      [{ x: 480, y: 490 }, { x: 480, y: 263 }],
       true, true);
-
-    // making the grass layer collidable with the player
+    // Making the grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);
   }
   
-  update() {
-  }
+  update() {}
 }

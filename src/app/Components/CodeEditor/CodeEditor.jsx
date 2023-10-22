@@ -1,16 +1,16 @@
-"use client"
+"use client";
 // import styles
-import './codeEditor.css';
+import "./codeEditor.css";
 // importing codemirror packages
-import CodeMirror from '@uiw/react-codemirror';
-import { xcodeLightInit, xcodeDarkInit } from '@uiw/codemirror-theme-xcode';
-import { javascript } from '@codemirror/lang-javascript';
+import CodeMirror from "@uiw/react-codemirror";
+import { xcodeLightInit, xcodeDarkInit } from "@uiw/codemirror-theme-xcode";
+import { javascript } from "@codemirror/lang-javascript";
 // importing stores
 import useThemeStore from "../../stores/useThemeStore";
 // importing react
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 // import CodeHelper
-import CodeHelper from '../CodeHelper/CodeHelper';
+import CodeHelper from "../CodeHelper/CodeHelper";
 
 export default function CodeEditor(props) {
   const { setCode, code } = props;
@@ -24,7 +24,7 @@ export default function CodeEditor(props) {
     const tr = state.update({
       changes: { from: startPos, insert: letter },
     });
-    
+
     dispatch(tr);
   };
 
@@ -47,48 +47,52 @@ export default function CodeEditor(props) {
 
   return (
     <>
-    <CodeHelper insertText={handleInsertHelloWorld} />
-    <CodeMirror className='codeMirrorStyles'
-      value={code}
-      ref={codemirrorRef}
-      height="100%" outline="none"
-      theme={
-        theme === 'dark' ?  xcodeDarkInit({
-          settings: {
-          lineHighlight: '#8a91991a',
-          selection: '#8a91991a',
-          caret: '#000',
-          gutterBackground: '#8a91991a',
+      <CodeHelper insertText={handleInsertHelloWorld} />
+      <CodeMirror
+        className="codeMirrorStyles"
+        value={code}
+        ref={codemirrorRef}
+        height="100%"
+        outline="none"
+        theme={
+          theme === "dark"
+            ? xcodeDarkInit({
+                settings: {
+                  lineHighlight: "#8a91991a",
+                  selection: "#8a91991a",
+                  caret: "#000",
+                  gutterBackground: "#8a91991a",
+                  lineNumbers: true,
+                  autoRefresh: true,
+                  lineWrapping: true,
+                },
+              })
+            : xcodeLightInit({
+                settings: {
+                  lineHighlight: "#8a91991a",
+                  selection: "#8a91991a",
+                  caret: "#000",
+                  gutterBackground: "#8a91991a",
+                  lineNumbers: true,
+                  autoRefresh: true,
+                  lineWrapping: true,
+                },
+              })
+        }
+        extensions={[javascript({ jsx: true })]}
+        onChange={(value) => setCode(value)}
+        basicSetup={{
+          saveCursorPosition: true,
+          autocompletion: false,
+          drawSelection: true,
+          highlightSelectionMatches: false,
+          bracketMatching: false,
           lineNumbers: true,
-          autoRefresh:true,
+          autoRefresh: true,
           lineWrapping: true,
-        }}): (
-        xcodeLightInit({
-          settings: {
-            lineHighlight: '#8a91991a',
-            selection: '#8a91991a',
-            caret: '#000',
-            gutterBackground: '#8a91991a',
-            lineNumbers: true,
-            autoRefresh:true,
-            lineWrapping: true,
-          }})
-        )
-      }
-      extensions={[javascript({ jsx: true })]}
-      onChange={(value) => setCode(value)}
-      basicSetup={{
-        saveCursorPosition: true,
-        autocompletion: false,
-        drawSelection: true,
-        highlightSelectionMatches: false,
-        bracketMatching: false,
-        lineNumbers: true,
-        autoRefresh:true,
-        lineWrapping: true,
-        cursorBlinkRate: 5000,
-      }}
-    />
+          cursorBlinkRate: 5000,
+        }}
+      />
     </>
-  )
+  );
 }

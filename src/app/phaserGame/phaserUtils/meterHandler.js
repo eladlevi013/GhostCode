@@ -23,10 +23,19 @@ export function createMeter(scene) {
   function handlePointerDown() {
     if (scene.input.y > 100) {
       const closestPlayer = findClosestPlayer(scene);
-      const x = closestPlayer.distance < 45 ? closestPlayer.player.x - 9 : scene.input.x + 5;
-      const y = closestPlayer.distance < 45 ? closestPlayer.player.y - 12 : scene.input.y - 5;
-      meterStarting = scene.add.sprite(x, y, 'meter_point')
-        .setOrigin(0).setScale(0.07).setDepth(10);
+      const x =
+        closestPlayer.distance < 45
+          ? closestPlayer.player.x - 9
+          : scene.input.x + 5;
+      const y =
+        closestPlayer.distance < 45
+          ? closestPlayer.player.y - 12
+          : scene.input.y - 5;
+      meterStarting = scene.add
+        .sprite(x, y, "meter_point")
+        .setOrigin(0)
+        .setScale(0.07)
+        .setDepth(10);
     }
   }
 
@@ -47,9 +56,21 @@ export function createMeter(scene) {
       const startY = meterStarting.y + 10;
       let angle = Math.atan2(currLocation.y - startY, currLocation.x - startX);
       angle = Math.round(angle / (Math.PI / 12)) * (Math.PI / 12);
-      const numDashes = Math.floor(Phaser.Math.Distance.Between(startX, startY, currLocation.x,
-        currLocation.y) / (DASH_LENGTH + DASH_GAP));
-      const dashedLinePoints = calculateDashedLinePoints(startX, startY, angle, numDashes);
+      const numDashes = Math.floor(
+        Phaser.Math.Distance.Between(
+          startX,
+          startY,
+          currLocation.x,
+          currLocation.y
+        ) /
+          (DASH_LENGTH + DASH_GAP)
+      );
+      const dashedLinePoints = calculateDashedLinePoints(
+        startX,
+        startY,
+        angle,
+        numDashes
+      );
       graphics.beginPath().setDepth(10);
       graphics.moveTo(startX, startY);
 
@@ -60,21 +81,35 @@ export function createMeter(scene) {
 
       graphics.strokePath();
       const degrees = Math.round((Phaser.Math.RadToDeg(angle) + 90) / 5) * 5;
-      let distance = Phaser.Math.Distance.Between(startX + 10, startY + 10, currLocation.x, currLocation.y);
+      let distance = Phaser.Math.Distance.Between(
+        startX + 10,
+        startY + 10,
+        currLocation.x,
+        currLocation.y
+      );
 
       if (distanceText) {
-        distanceText.setText(`Distance: ${parseInt(distance.toFixed(2) / DISTANCE_FACTOR)}\nAngle: ${parseInt(degrees)}`);
+        distanceText.setText(
+          `Distance: ${parseInt(
+            distance.toFixed(2) / DISTANCE_FACTOR
+          )}\nAngle: ${parseInt(degrees)}`
+        );
         distanceText.setPosition(currLocation.x + 10, currLocation.y + 10);
       } else {
-        distanceText = scene.add.text(currLocation.x + 10, currLocation.y + 10, `Distance: 
-          ${distance.toFixed(2) / DISTANCE_FACTOR}`, { fontFamily: 'Arial', fontSize: 16, color: '#000000' });
+        distanceText = scene.add.text(
+          currLocation.x + 10,
+          currLocation.y + 10,
+          `Distance: 
+          ${distance.toFixed(2) / DISTANCE_FACTOR}`,
+          { fontFamily: "Arial", fontSize: 16, color: "#000000" }
+        );
       }
     }
   }
 
   function handlePointerUp() {
-    scene.input.setDefaultCursor('url(assets/cursors/finger_up.cur), auto');
-    
+    scene.input.setDefaultCursor("url(assets/cursors/finger_up.cur), auto");
+
     if (meterStarting) {
       graphics.clear();
       meterStarting.destroy();
@@ -87,16 +122,13 @@ export function createMeter(scene) {
     }
   }
 
-  scene.input.on('pointerdown', handlePointerDown);
-  scene.input.on('pointermove', handlePointerMove);
-  scene.input.on('pointerup', handlePointerUp);
+  scene.input.on("pointerdown", handlePointerDown);
+  scene.input.on("pointermove", handlePointerMove);
+  scene.input.on("pointerup", handlePointerUp);
 }
 
 function calculateDistance(pointA, pointB) {
-  return Phaser.Math.Distance.Between(
-    pointA.x, pointA.y,
-    pointB.x, pointB.y
-  );
+  return Phaser.Math.Distance.Between(pointA.x, pointA.y, pointB.x, pointB.y);
 }
 
 function findClosestPlayer(scene) {
@@ -105,19 +137,19 @@ function findClosestPlayer(scene) {
   let closestDistance = Infinity;
 
   Object.keys(players).forEach((key) => {
-      players[key]?.forEach((player) => {
-        const distance = calculateDistance(scene.input, player);
+    players[key]?.forEach((player) => {
+      const distance = calculateDistance(scene.input, player);
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestPlayer = player;
-        }
-      });
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestPlayer = player;
+      }
+    });
   });
 
   return { player: closestPlayer, distance: closestDistance };
 }
-  
+
 export function findClosesCollectable(scene) {
   const collectables = scene.collectables;
   let closestCollectable = null;
