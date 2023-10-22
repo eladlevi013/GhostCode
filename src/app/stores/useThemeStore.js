@@ -1,22 +1,22 @@
-"use client"
-import { create } from 'zustand';
+"use client";
+import { create } from "zustand";
 
 const useThemeStore = create((set) => ({
   // Initial theme state, using local storage if available
-  theme: 'light',
+  theme: "light",
 
   // Action to toggle the theme
   toggleTheme: () => {
     set((state) => {
-      const newTheme = state.theme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
+      const newTheme = state.theme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
       return { theme: newTheme };
     });
   },
 
   // Action to set a specific theme
   setTheme: (theme) => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
     set({ theme });
   },
 }));

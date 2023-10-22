@@ -1,7 +1,7 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const useAuthModalStore = create((set) => ({
-  authPanelMode: 'login',
+  authPanelMode: "login",
   authPanelShow: false,
 
   setAuthPanelMode: (mode) => {

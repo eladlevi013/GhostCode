@@ -1,11 +1,14 @@
-import {createMeter} from '../meterHandler.js';
+import { createMeter } from "../meterHandler.js";
 
 export function createMapIcon(scene) {
-    scene.add.image(585, 20, 'map_button')
-    .setOrigin(0).setScale(0.25).setDepth(25)
+  scene.add
+    .image(585, 20, "map_button")
+    .setOrigin(0)
+    .setScale(0.25)
+    .setDepth(25)
     .setInteractive()
-    .on('pointerdown', () => {
-        scene.setLevelSelectorShow(true);
+    .on("pointerdown", () => {
+      scene.setLevelSelectorShow(true);
     });
 }
 
@@ -15,9 +18,13 @@ export function resetScene(scene) {
 }
 
 export function createRetryButton(scene) {
-  let retryButton = scene.add.image(20, 20, 'retry_button')
-    .setOrigin(0).setScale(0.25).setDepth(25).setInteractive();
-  retryButton.on('pointerdown', () => {
+  let retryButton = scene.add
+    .image(20, 20, "retry_button")
+    .setOrigin(0)
+    .setScale(0.25)
+    .setDepth(25)
+    .setInteractive();
+  retryButton.on("pointerdown", () => {
     resetScene(scene);
   });
 
@@ -25,20 +32,20 @@ export function createRetryButton(scene) {
 }
 
 export function changeCursor(scene) {
-  scene.input.setDefaultCursor('url(assets/cursors/finger_up.cur), auto');
+  scene.input.setDefaultCursor("url(assets/cursors/finger_up.cur), auto");
   scene.input.mouse.disableContextMenu();
 
-  scene.input.on('pointerdown', () => {
-    scene.input.setDefaultCursor('url(assets/cursors/finger_down.cur), auto');
+  scene.input.on("pointerdown", () => {
+    scene.input.setDefaultCursor("url(assets/cursors/finger_down.cur), auto");
   });
 
-  scene.input.on('pointerup', () => {
-    scene.input.setDefaultCursor('url(assets/cursors/finger_up.cur), auto');
+  scene.input.on("pointerup", () => {
+    scene.input.setDefaultCursor("url(assets/cursors/finger_up.cur), auto");
   });
 }
 
 export function collideTileMapLayer(scene, layer) {
-  for(const key of Object.keys(scene.players)) {
+  for (const key of Object.keys(scene.players)) {
     for (const player of scene.players[key]) {
       scene.physics.add.collider(player, layer);
     }
