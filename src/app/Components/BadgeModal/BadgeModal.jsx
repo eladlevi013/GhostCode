@@ -11,11 +11,10 @@ export default function LevelSelector(props) {
     (state) => state.setBadgeModalShow
   );
   const accountData = useAccountDataStore((state) => state.accountData);
-
-  let currentWorld = parseInt(accountData?.currentLevel / 5) + 1;
+  let currentWorld = parseInt((accountData?.currentLevel - 1) / 5);
 
   const isGrayscale = (badgeIndex) => {
-    return badgeIndex >= currentWorld;
+    return badgeIndex > currentWorld;
   };
 
   return (
