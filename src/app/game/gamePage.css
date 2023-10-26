@@ -114,3 +114,9 @@ canvas {
     transform: scale(0.8);
   }
 }
+
+@media (max-height: 680px) {
+  canvas {
+    transform: scale(0.6);
+  }
+}

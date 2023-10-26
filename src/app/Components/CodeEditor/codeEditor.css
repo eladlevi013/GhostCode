@@ -27,6 +27,18 @@
   }
 }
 
+@media (max-height: 680px) {
+  .codeMirrorStyles {
+    width: calc(100% - 410px);
+    margin-left: 410px;
+  }
+
+  .codeHelperContainer {
+    width: calc(100% - 410px);
+    margin-left: 410px;
+  }
+}
+
 /* .codeHelperContainer styles */
 .codeHelperContainer {
   font-size: 40px;

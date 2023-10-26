@@ -85,11 +85,23 @@
 @media (max-height: 850px) {
   .codeHelperContainerLight {
     width: calc(100% - 550px);
-    margin-left: 550xpx;
+    margin-left: 550px;
   }
 
   .codeHelperContainerDark {
     width: calc(100% - 550px);
     margin-left: 550px;
+  }
+}
+
+@media (max-height: 680px) {
+  .codeHelperContainerLight {
+    width: calc(100% - 410px);
+    margin-left: 410px;
+  }
+
+  .codeHelperContainerDark {
+    width: calc(100% - 410px);
+    margin-left: 410px;
   }
 }
