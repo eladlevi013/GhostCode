@@ -14,6 +14,19 @@
   overflow: hidden;
 }
 
+/* Applying a media query for screens with a maximum width of 600px */
+@media (max-height: 850px) {
+  .codeMirrorStyles {
+    width: calc(100% - 550px);
+    margin-left: 550px;
+  }
+
+  .codeHelperContainer {
+    width: calc(100% - 550px);
+    margin-left: 550px;
+  }
+}
+
 /* .codeHelperContainer styles */
 .codeHelperContainer {
   font-size: 40px;
