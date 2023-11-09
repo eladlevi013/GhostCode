@@ -1,26 +1,26 @@
-"use client";
-// styles
 import "./navbar.css";
-// importing stores
 import useTokenStore from "../../stores/useTokenStore";
 import useAuthModalStore from "../../stores/useAuthModalStore";
 import useProgressStore from "../../stores/useProgressStore";
 import useBadgeModalStore from "@/app/stores/useBadgeModalStore";
 import useAccountDataStore from "@/app/stores/useAccountDataStore";
-// import constants
 import { badges } from "@/app/constants";
 
 export default function Navbar() {
-  // loading stores
   const token = useTokenStore((state) => state.token);
   const clearToken = useTokenStore((state) => state.clearToken);
+
   const setAuthPanelShow = useAuthModalStore((state) => state.setAuthPanelShow);
   const setAuthPanelMode = useAuthModalStore((state) => state.setAuthPanelMode);
+
   const currentLevel = useProgressStore((state) => state.currentLevel);
+
   const currentWorld = useProgressStore((state) => state.currentWorld);
+
   const setBadgeModalShow = useBadgeModalStore(
     (state) => state.setBadgeModalShow
   );
+
   const accountData = useAccountDataStore((state) => state.accountData);
 
   // handling login popup
@@ -43,7 +43,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {token && token != "null" ? (
+        {token && token !== "null" ? (
           <div>
             <p className="badgeContainer">
               <img

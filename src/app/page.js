@@ -1,9 +1,6 @@
 "use client";
-// import framer
 import { motion } from "framer-motion";
-// import styles
 import "./mainPage.css";
-// import stores
 import useTokenStore from "./stores/useTokenStore";
 import useAuthModalStore from "./stores/useAuthModalStore";
 

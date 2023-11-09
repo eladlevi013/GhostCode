@@ -2,10 +2,8 @@
 import { create } from "zustand";
 
 const useThemeStore = create((set) => ({
-  // Initial theme state, using local storage if available
   theme: "light",
 
-  // Action to toggle the theme
   toggleTheme: () => {
     set((state) => {
       const newTheme = state.theme === "light" ? "dark" : "light";
@@ -14,7 +12,6 @@ const useThemeStore = create((set) => ({
     });
   },
 
-  // Action to set a specific theme
   setTheme: (theme) => {
     localStorage.setItem("theme", theme);
     set({ theme });
