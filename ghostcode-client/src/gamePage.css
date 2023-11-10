@@ -1,0 +1,112 @@
+html,
+body {
+  /* overflow: hidden; */
+}
+
+.runButton {
+  background-color: transparent;
+  width: 230px;
+  height: 90px;
+  background-image: url("../public/assets/UI/start_button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  z-index: 100;
+  margin-left: 350px;
+}
+
+.resetButton {
+  background-color: transparent;
+  width: 230px;
+  height: 90px;
+  background-image: url("../public/assets/UI/start_button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  z-index: 100;
+  margin-left: 350px;
+}
+
+.themeToggleButton {
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  margin-top: 90px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  position: absolute;
+  z-index: 100;
+}
+
+.gamePageContainer {
+  margin: 0;
+  padding: 0;
+  margin-left: -8px;
+  margin-top: 65px;
+  overflow: hidden;
+  display: flex;
+}
+
+.loadingScreen {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 65px);
+  background: rgb(200, 196, 178);
+  background: radial-gradient(
+    circle,
+    rgba(200, 196, 178, 1) 0%,
+    rgba(197, 189, 161, 1) 21%,
+    rgba(212, 205, 180, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loadingScreenText {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 150px;
+}
+
+.mainPageTitle {
+  margin-top: 45px;
+  font-family: dimbo;
+  font-size: 55px;
+  z-index: 1000;
+  color: white;
+  text-shadow: -3px -1px 0 #000, 1px -1px 0 #000, -3px 3px 0 #000,
+    1px 3px 0 #000;
+}
+
+/* Assuming the default styles for canvas are these */
+canvas {
+  transform: scaleY(1);
+  transform-origin: top left;
+  height: 100vh;
+}
+
+.codeEditorContainer {
+  flex: 1;
+}

@@ -1,0 +1,75 @@
+/* .codeHelperContainer styles */
+.codeHelperContainerLight {
+  z-index: 100;
+  font-size: 40px;
+  height: 65px;
+  top: 0;
+  left: 0;
+  outline: none;
+  border: none;
+  overflow-x: nowrap;
+  white-space: nowrap;
+  background-color: beige;
+  letter-spacing: 0.75px;
+}
+
+.codeHelperContainerDark {
+  z-index: 100;
+  font-size: 40px;
+  height: 65px;
+  top: 0;
+  left: 0;
+  outline: none;
+  border: none;
+  overflow-x: nowrap;
+  white-space: nowrap;
+  background-color: #3f4147;
+  letter-spacing: 0.75px;
+}
+
+/* .boxStyle styles */
+.boxStyleLight {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+  cursor: pointer;
+  font-size: 28px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 9px;
+  min-width: 120px;
+  height: 22px;
+  border: 3px solid #41291f;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+  color: #41291f;
+  font-family: dimbo;
+}
+
+/* .boxStyle styles */
+.boxStyleDark {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+  cursor: pointer;
+  font-size: 28px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 14px;
+  min-width: 120px;
+  height: 22px;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #494b50;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: dimbo;
+}
+
+.textInBox {
+  margin-top: -4px;
+  font-size: 25px;
+}

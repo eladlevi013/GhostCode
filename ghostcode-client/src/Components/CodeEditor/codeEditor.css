@@ -1,0 +1,62 @@
+.codeMirrorStyles {
+  font-size: 40px;
+  top: 0;
+  left: 0;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  white-space: nowrap;
+  height: calc(100vh - 65px);
+}
+
+/* Applying a media query for screens with a maximum width of 600px */
+@media (max-height: 850px) {
+  .codeHelperContainer {
+    width: calc(100% - 550px);
+    margin-left: 550px;
+  }
+}
+
+@media (max-height: 680px) {
+  .codeHelperContainer {
+    width: calc(100% - 410px);
+    margin-left: 410px;
+  }
+}
+
+/* .codeHelperContainer styles */
+.codeHelperContainer {
+  font-size: 40px;
+  margin-left: 682px;
+  position: absolute;
+  width: calc(100% - 682px);
+  height: calc(100% - 80px);
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  outline: none;
+  border: none;
+  overflow-x: scroll; /* Use 'scroll' instead of 'auto' */
+  white-space: nowrap;
+  background-color: beige;
+}
+
+/* .boxStyle styles */
+.boxStyle {
+  cursor: pointer;
+  font-size: 28px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 11.5px;
+  min-width: 120px;
+  height: 25px;
+  border: 3px solid #41291f;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+  color: #41291f;
+  font-family: dimbo;
+}

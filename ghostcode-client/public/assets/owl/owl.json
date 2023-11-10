@@ -1,0 +1,395 @@
+{
+  "frames": {
+    "owl_awake_00.png": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_01.png": {
+      "frame": {
+        "x": 347,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_02.png": {
+      "frame": {
+        "x": 693,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_03.png": {
+      "frame": {
+        "x": 1039,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_04.png": {
+      "frame": {
+        "x": 1385,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_05.png": {
+      "frame": {
+        "x": 1731,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_06.png": {
+      "frame": {
+        "x": 2077,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_07.png": {
+      "frame": {
+        "x": 2423,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_08.png": {
+      "frame": {
+        "x": 2769,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_09.png": {
+      "frame": {
+        "x": 3115,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_010.png": {
+      "frame": {
+        "x": 3461,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_011.png": {
+      "frame": {
+        "x": 3807,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_012.png": {
+      "frame": {
+        "x": 4153,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_013.png": {
+      "frame": {
+        "x": 4499,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_014.png": {
+      "frame": {
+        "x": 4845,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_015.png": {
+      "frame": {
+        "x": 5191,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_016.png": {
+      "frame": {
+        "x": 5537,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_017.png": {
+      "frame": {
+        "x": 5883,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    },
+    "owl_awake_018.png": {
+      "frame": {
+        "x": 6229,
+        "y": 1,
+        "w": 344,
+        "h": 227
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 344,
+        "h": 227
+      },
+      "sourceSize": {
+        "w": 344,
+        "h": 227
+      }
+    }
+  },
+  "meta": {
+    "app": "http://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "spritesheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 6574,
+      "h": 229
+    },
+    "scale": "1"
+  }
+}
