@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import App from "./App";
 import Landing from "./Landing";
 import Navbar from "./Components/Navbar/Navbar";
 import Game from "./Game";

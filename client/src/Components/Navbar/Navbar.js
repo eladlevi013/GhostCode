@@ -6,7 +6,7 @@ import {
   toggleBadgeModal,
 } from "../../redux/uiSlice";
 import { setUserData, fetchUserData } from "../../redux/userSlice";
-import { badges } from "../../constants";
+import { badges, worlds } from "../../constants";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 
@@ -81,7 +81,7 @@ export default function Navbar() {
             </p>
             {currentLevel > 0 ? (
               <p className="worldContainer">
-                {badges[currentLevel % 5]} - Level {currentLevel}
+                {worlds[parseInt(currentLevel / 5)]} - Level {currentLevel}
               </p>
             ) : null}
             <p className="emailContainer">{userData?.username}</p>

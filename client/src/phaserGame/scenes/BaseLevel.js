@@ -100,20 +100,19 @@ export default class BaseLevel extends Phaser.Scene {
       "assets/players/mouse/mouse.png",
       "assets/players/mouse/mouse.json"
     );
-    // this.load.spritesheet("fish", "assets/fish/anchovy_idle.png", {
-    //   frameWidth: 503,
-    //   frameHeight: 169,
-    // }),
-    //   this.load.spritesheet(
-    //     "fish_swimming",
-    //     "assets/fish/anchovy_swimming.png",
-    //     { frameWidth: 503, frameHeight: 169 }
-    //   ),
-    //   // Collectables
-    //   this.load.spritesheet("gem", "assets/gems/gem.png", {
-    //     frameWidth: 196,
-    //     frameHeight: 256,
-    //   });
+    this.load.spritesheet("fish", "assets/fish/anchovy_idle.png", {
+      frameWidth: 503,
+      frameHeight: 169,
+    });
+    this.load.spritesheet("fish_swimming", "assets/fish/anchovy_swimming.png", {
+      frameWidth: 503,
+      frameHeight: 169,
+    });
+    // Collectables
+    this.load.spritesheet("gem", "assets/gems/gem.png", {
+      frameWidth: 196,
+      frameHeight: 256,
+    });
     this.load.image("cheese_1", "assets/cheese/cheese_1.png");
     this.load.image("cheese_2", "assets/cheese/cheese_2.png");
     // Level props

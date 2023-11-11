@@ -3,6 +3,7 @@ import { collideTileMapLayer } from "../../phaserUtils/UI/gameUiHandler.js";
 import { createPlayer } from "../../phaserUtils/player/playerCreator.js";
 import SpookyWoodsBaseLevel from "./SpookyWoodsBaseLevel.js";
 import { disableGameIsLoading } from "../../../redux/uiSlice.js";
+import { createCollectables } from "../../phaserUtils/collectablesHandler.js";
 
 // constants
 const COLLECTABLES_LOCATIONS = [
@@ -27,7 +28,7 @@ export default class Level1 extends SpookyWoodsBaseLevel {
     this.createWorldProps();
     // creating player, gems and UI elements
     createPlayer(this, PLAYERS_LOCATIONS);
-    // createCollectables(this, COLLECTABLES_LOCATIONS);
+    createCollectables(this, COLLECTABLES_LOCATIONS);
     // grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);

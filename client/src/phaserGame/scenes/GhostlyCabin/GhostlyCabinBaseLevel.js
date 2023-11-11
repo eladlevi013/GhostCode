@@ -2,8 +2,15 @@ import Phaser from "phaser";
 import BaseLevel from "../BaseLevel.js";
 
 export default class GhostlyCabniBaseLevel extends BaseLevel {
-  constructor(levelNumber, totalCollectables, gems, ranking) {
-    super(levelNumber, totalCollectables, gems, "Ghostly Cabin", ranking);
+  constructor(levelNumber, totalCollectables, gems, ranking, reduxDispatch) {
+    super(
+      levelNumber,
+      totalCollectables,
+      gems,
+      "Ghostly Cabin",
+      ranking,
+      reduxDispatch
+    );
   }
 
   createWorldProps(lantern_location, fenceLocations = [], keysLocations = []) {

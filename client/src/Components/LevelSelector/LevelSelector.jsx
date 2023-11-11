@@ -1,24 +1,24 @@
 import "./levelSelector.css";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLevelSelectorModal } from "../../redux/uiSlice";
-import { setCurrentLevel } from "../../redux/userSlice";
 import { worlds } from "../../constants";
+import { setCurrentLevel } from "../../redux/userSlice";
 
 export default function LevelSelector(props) {
   const dispatch = useDispatch();
-  const currentLevel = useSelector((state) => state.user.currentLevel);
-  const userData = useSelector((state) => state.user.userData);
 
+  // world index
   const setWorldIndex = props.setWorldIndex;
   const worldIndex = props.worldIndex;
 
+  const levelsData = props.levelsData;
+  const currentLevel = Object.keys(levelsData).length + 1;
+
   function changeLevelTo(gotoLevel) {
-    props.phaserGame.scene.scenes[currentLevel - 1].scene.start(
-      `level${gotoLevel}`
-    );
+    props.phaserGame.scene.scenes[gotoLevel].scene.start(`level${gotoLevel}`);
 
     dispatch(toggleLevelSelectorModal());
-    // dispatch(setCurrentLevel());
+    dispatch(setCurrentLevel(gotoLevel));
   }
 
   return (
@@ -29,7 +29,7 @@ export default function LevelSelector(props) {
           className="widePanelStyle"
           alt="Wide Panel"
         />
-        <h1 className="levelSelectorWorldName">{worlds[currentLevel]}</h1>
+        <h1 className="levelSelectorWorldName">{worlds[worldIndex]}</h1>
         <img
           onClick={() => {
             dispatch(toggleLevelSelectorModal());
@@ -60,7 +60,6 @@ export default function LevelSelector(props) {
           className="arrowButtonStyle"
           alt="Close Button"
         />
-
         {Array.from({ length: 5 }, (_, i) => i + 1).map((i) => {
           const levelNumber = i + worldIndex * 5;
           const isLevelAccessible = levelNumber <= currentLevel;
@@ -79,8 +78,8 @@ export default function LevelSelector(props) {
               let marginTopValue = j === 1 ? "-26px" : "-32px";
 
               if (
-                userData?.levelsData &&
-                j < userData?.levelsData[i + worldIndex * 5]?.starsData
+                levelsData &&
+                j < levelsData[`level${i + worldIndex * 5}`]?.starsData
               ) {
                 starImages.push(
                   <img

@@ -22,10 +22,11 @@ const Game = () => {
   const token = () => {};
 
   // sets local states
-  const [runningMode, setRunningMode] = useState("run"); // run or reset
+  const [runningMode, setRunningMode] = useState("run");
   const [phaserGameInstance, setPhaserGameInstance] = useState(null);
   const [code, setCode] = useState("");
   const [worldIndex, setWorldIndex] = useState(0);
+  const [levelsData, setLevelsData] = useState([]);
 
   const reduxDispatch = (data) => {
     dispatch(data());
@@ -39,21 +40,17 @@ const Game = () => {
     return () => (document.body.style.overflow = "scroll");
   }, []);
 
-  // fetch account data
   useEffect(() => {
-    if (token && token != "null") {
-      axios
-        .get("/api/account/getData/", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          setRunningMode("run");
-          setCode("");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    console.log("current level: ", currentLevel);
+    // fetching user levels data from server
+    axios
+      .get(`${process.env.REACT_APP_SERVER_API}/user/levels`, {
+        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+      })
+      .then((res) => {
+        setLevelsData(res.data);
+        console.log("levels data updated: ", res.data);
+      });
   }, [currentLevel]);
 
   const handleClick = () => {
@@ -111,6 +108,7 @@ const Game = () => {
 
       {levelSelectorModalOpen ? (
         <LevelSelector
+          levelsData={levelsData}
           phaserGame={phaserGameInstance}
           worldIndex={worldIndex}
           setWorldIndex={setWorldIndex}

@@ -1,11 +1,12 @@
 import { toggleLevelSelectorModal } from "../../../redux/uiSlice.js";
 import { resetScene } from "./gameUiHandler.js";
 import axios from "axios";
+import { fetchUserData } from "../../../redux/userSlice.js";
 
 export async function showFinishLevelPanel(scene, stars) {
   axios
     .post(
-      "/api/account/level",
+      `${process.env.REACT_APP_SERVER_API}/user/levels/submit`,
       {
         finishedLevel: scene.level,
         linesOfcode: scene.linesOfcode,
@@ -16,7 +17,7 @@ export async function showFinishLevelPanel(scene, stars) {
       }
     )
     .then((res) => {
-      fetchAccountData(scene);
+      this.reduxDispatch(fetchUserData);
     })
     .catch((err) => {
       console.log(err);
@@ -27,19 +28,6 @@ export async function showFinishLevelPanel(scene, stars) {
   await animateWidePanel(widePanel, scene);
   addStars(scene, stars);
   buildUIButtons(scene);
-}
-
-function fetchAccountData(scene) {
-  axios
-    .get("/api/account/getData/", {
-      headers: { Authorization: `Bearer ${scene.token}` },
-    })
-    .then((res) => {
-      scene.setAccountData(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 }
 
 function createDarkScreen(scene) {

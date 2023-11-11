@@ -5,8 +5,15 @@ import {
 import BaseLevel from "../BaseLevel";
 
 export default class TheAbandonedRiverBaseLevel extends BaseLevel {
-  constructor(levelNumber, totalCollectables, gems, ranking) {
-    super(levelNumber, totalCollectables, gems, "The Abandoned River", ranking);
+  constructor(levelNumber, totalCollectables, gems, ranking, reduxDispatch) {
+    super(
+      levelNumber,
+      totalCollectables,
+      gems,
+      "The Abandoned River",
+      ranking,
+      reduxDispatch
+    );
   }
 
   createWorldProps(

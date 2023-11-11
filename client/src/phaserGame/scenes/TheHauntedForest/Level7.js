@@ -17,8 +17,8 @@ const COLLECTABLES_LOCATIONS = [
 const PLAYERS_LOCATIONS = [{ type: PLAYER_TYPES.GHOST, x: 200, y: 643 }];
 
 export default class Level7 extends TheHauntedForestBaseLevel {
-  constructor() {
-    super(7, 3, COLLECTABLES_LOCATIONS, { best: 3, minimum: 6 });
+  constructor({ reduxDispatch }) {
+    super(7, 3, COLLECTABLES_LOCATIONS, { best: 3, minimum: 6 }, reduxDispatch);
   }
 
   create() {

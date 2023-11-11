@@ -26,7 +26,16 @@ exports.register = async (req, res) => {
     await newUser.save();
 
     const token = generateToken(newUser);
-    return res.json({ token, message: "Signup success", user: newUser });
+    return res.json({
+      token,
+      message: "Signup success",
+      user: {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
   } catch (error) {
     console.error("Error during signup:", error);
     return res.status(500).json({ error: "Internal server error" });
@@ -57,7 +66,7 @@ exports.login = async (req, res) => {
     const { _id, username, role, levelsData } = user;
     return res.json({
       token,
-      user: { _id, username, email, role, levelsData },
+      user: { _id, username, email, role },
       message: "Signin success",
     });
   } catch (error) {

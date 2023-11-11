@@ -24,8 +24,14 @@ const PLAYERS_LOCATIONS = [
 ];
 
 export default class Level20 extends GhostlyCabniBaseLevel {
-  constructor() {
-    super(20, 6, COLLECTABLES_LOCATIONS, { best: 4, minimum: 6 });
+  constructor({ reduxDispatch }) {
+    super(
+      20,
+      6,
+      COLLECTABLES_LOCATIONS,
+      { best: 4, minimum: 6 },
+      reduxDispatch
+    );
   }
 
   create() {

@@ -5,8 +5,15 @@ import {
 import BaseLevel from "../BaseLevel";
 
 export default class TheHauntedForestBaseLevel extends BaseLevel {
-  constructor(levelNumber, totalCollectables, gems, ranking) {
-    super(levelNumber, totalCollectables, gems, "The Haunted Forest", ranking);
+  constructor(levelNumber, totalCollectables, gems, ranking, reduxDispatch) {
+    super(
+      levelNumber,
+      totalCollectables,
+      gems,
+      "The Haunted Forest",
+      ranking,
+      reduxDispatch
+    );
   }
 
   createWorldProps(treeFrame = 1, tantArea = true) {
