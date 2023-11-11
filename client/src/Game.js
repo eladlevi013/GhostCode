@@ -41,7 +41,6 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    console.log("current level: ", currentLevel);
     // fetching user levels data from server
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/levels`, {
@@ -49,14 +48,12 @@ const Game = () => {
       })
       .then((res) => {
         setLevelsData(res.data);
-        console.log("levels data updated: ", res.data);
       });
   }, [currentLevel]);
 
   const handleClick = () => {
     if (runningMode == "run") {
       const scene = phaserGameInstance.scene.scenes[currentLevel - 1];
-      console.log(scene);
       scene.parseCode(code);
       setRunningMode("reset");
     } else {

@@ -13,9 +13,12 @@ export default function LevelSelector(props) {
 
   const levelsData = props.levelsData;
   const currentLevel = Object.keys(levelsData).length + 1;
+  const reduxCurrLevel = useSelector((state) => state.user.currentLevel);
 
   function changeLevelTo(gotoLevel) {
+    props.phaserGame.scene.stop(`level${reduxCurrLevel}`);
     props.phaserGame.scene.scenes[gotoLevel].scene.start(`level${gotoLevel}`);
+    console.log(props.phaserGame.scene.scenes[gotoLevel].scene);
 
     dispatch(toggleLevelSelectorModal());
     dispatch(setCurrentLevel(gotoLevel));
