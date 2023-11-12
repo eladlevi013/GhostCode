@@ -2,6 +2,7 @@ import { toggleLevelSelectorModal } from "../../../redux/uiSlice.js";
 import { resetScene } from "./gameUiHandler.js";
 import axios from "axios";
 import { fetchUserData } from "../../../redux/userSlice.js";
+import Cookies from "js-cookie";
 
 export async function showFinishLevelPanel(scene, stars) {
   axios
@@ -13,11 +14,11 @@ export async function showFinishLevelPanel(scene, stars) {
         stars: stars,
       },
       {
-        headers: { authorization: `Bearer ${scene.token}` },
+        headers: { authorization: `Bearer ${Cookies.get("token")}` },
       }
     )
     .then((res) => {
-      this.reduxDispatch(fetchUserData);
+      scene.reduxDispatch(fetchUserData);
     })
     .catch((err) => {
       console.log(err);

@@ -4,14 +4,13 @@ import { toggleBadgeModal } from "../../redux/uiSlice";
 
 export default function LevelSelector(props) {
   const dispatch = useDispatch();
-
   const badgeModalOpen = useSelector((state) => state.ui.badgeModalOpen);
-
-  const accountData = "";
-  let currentWorld = parseInt(accountData?.currentLevel / 5) + 1;
+  const userBadgeIndex = useSelector(
+    (state) => state.user.userData?.badgeIndex
+  );
 
   const isDisabled = (badgeIndex) => {
-    return badgeIndex >= currentWorld;
+    return badgeIndex > userBadgeIndex;
   };
 
   return (

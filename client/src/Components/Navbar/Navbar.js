@@ -9,11 +9,16 @@ import { setUserData, fetchUserData } from "../../redux/userSlice";
 import { badges, worlds } from "../../constants";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.userData);
   const currentLevel = useSelector((state) => state.user.currentLevel);
+  const userBadgeIndex = useSelector(
+    (state) => state.user.userData?.badgeIndex
+  );
 
   useEffect(() => {
     const userDataLocally = JSON.parse(localStorage.getItem("user"));
@@ -63,7 +68,7 @@ export default function Navbar() {
                 width={"50px"}
                 src={
                   userData
-                    ? `assets/badges/${badges[parseInt((11 - 1) / 5)]}.png`
+                    ? `assets/badges/${badges[userBadgeIndex]}.png`
                     : null
                 }
               />
@@ -79,7 +84,7 @@ export default function Navbar() {
             >
               logout
             </p>
-            {currentLevel > 0 ? (
+            {currentLevel > 0 && location.pathname === "/game" ? (
               <p className="worldContainer">
                 {worlds[parseInt(currentLevel / 5)]} - Level {currentLevel}
               </p>

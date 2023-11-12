@@ -22,6 +22,7 @@ exports.register = async (req, res) => {
       password,
       role: "user",
       levelsData: [],
+      badgeIndex: 0,
     });
     await newUser.save();
 
@@ -64,9 +65,16 @@ exports.login = async (req, res) => {
 
     const token = generateToken(user);
     const { _id, username, role, levelsData } = user;
+
     return res.json({
       token,
-      user: { _id, username, email, role },
+      user: {
+        _id,
+        username,
+        email,
+        role,
+        badgeIndex: Object.keys(levelsData).length / 5,
+      },
       message: "Signin success",
     });
   } catch (error) {
@@ -83,6 +91,7 @@ exports.isAuth = (req, res, next) => {
   }
 
   const token = authHeader.substring(7);
+  console.log("token", token);
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);

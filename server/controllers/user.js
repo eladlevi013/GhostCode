@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const jwt = require("jsonwebtoken");
 
 exports.read = (req, res) => {
   const userId = req.user._id;
@@ -13,6 +12,7 @@ exports.read = (req, res) => {
       user.hashed_password = undefined;
       user.salt = undefined;
       user.levelsData = undefined;
+      user.badgeIndex = existingUser.levelsData.length / 5;
       return res.json(user);
     })
     .catch((err) => {
