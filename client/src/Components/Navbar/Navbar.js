@@ -82,7 +82,8 @@ export default function Navbar() {
             </p>
             {currentLevel > 0 && location.pathname === "/game" ? (
               <p className="worldContainer">
-                {worlds[parseInt(currentLevel / 5)]} - Level {currentLevel}
+                {worlds[parseInt((currentLevel - 1) / 5)]} - Level{" "}
+                {currentLevel}
               </p>
             ) : null}
             <p className="emailContainer">{userData?.username}</p>

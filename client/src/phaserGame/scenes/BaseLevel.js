@@ -11,6 +11,7 @@ export default class BaseLevel extends Phaser.Scene {
     ranking,
     reduxDispatch
   ) {
+    console.log("BaseLevel: " + levelNumber + " " + worldName);
     super({ key: `level${levelNumber}` });
     this.worldName = worldName;
     this.level = levelNumber;

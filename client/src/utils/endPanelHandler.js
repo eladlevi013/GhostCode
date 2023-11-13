@@ -72,7 +72,6 @@ export function showFinishLevelPanel(scene, stars) {
         console.log("changing scene");
         scene.movingTimer?.destroy();
         scene.scene.start(`level${++scene.level}`);
-        console.log("scene.level", scene.level);
         scene.reduxDispatch(setCurrentLevel(scene.level));
       });
 

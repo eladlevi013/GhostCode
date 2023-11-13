@@ -58,6 +58,9 @@ export const userSlice = createSlice({
     setCurrentLevel: (state, action) => {
       state.currentLevel = action.payload;
     },
+    nextLevel: (state) => {
+      state.currentLevel += 1;
+    },
     setLevelsData: (state, action) => {
       state.levelsData = action.payload;
     },
@@ -69,7 +72,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUserData, setCurrentLevel, setLevelsData } =
+export const { setUserData, setCurrentLevel, setLevelsData, nextLevel } =
   userSlice.actions;
 
 export default userSlice.reducer;

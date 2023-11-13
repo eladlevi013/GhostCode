@@ -48,6 +48,11 @@ const Game = () => {
       .then((res) => {
         dispatch(setLevelsData(res.data));
       });
+
+    // change scene
+    phaserGameInstance?.scene?.scenes[currentLevel].scene.start(
+      `level${currentLevel}`
+    );
   }, [currentLevel]);
 
   const handleClick = () => {
