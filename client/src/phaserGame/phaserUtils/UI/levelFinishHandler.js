@@ -1,8 +1,9 @@
 import { toggleLevelSelectorModal } from "../../../redux/uiSlice.js";
 import { resetScene } from "./gameUiHandler.js";
 import axios from "axios";
-import { fetchUserData } from "../../../redux/userSlice.js";
+import { fetchUserLevels } from "../../../redux/userSlice.js";
 import Cookies from "js-cookie";
+import { setCurrentLevel } from "../../../redux/userSlice.js";
 
 export async function showFinishLevelPanel(scene, stars) {
   axios
@@ -18,7 +19,7 @@ export async function showFinishLevelPanel(scene, stars) {
       }
     )
     .then((res) => {
-      scene.reduxDispatch(fetchUserData);
+      scene.reduxDispatch(fetchUserLevels());
     })
     .catch((err) => {
       console.log(err);
@@ -131,9 +132,10 @@ function goToNextLevel(scene) {
   } else {
     scene.movingTimer?.destroy();
     scene.scene.start(`level${++scene.level}`);
+    scene.reduxDispatch(setCurrentLevel(scene.level));
   }
 }
 
 function showLevelSelector(scene) {
-  scene.reduxDispatch(toggleLevelSelectorModal);
+  scene.reduxDispatch(toggleLevelSelectorModal());
 }

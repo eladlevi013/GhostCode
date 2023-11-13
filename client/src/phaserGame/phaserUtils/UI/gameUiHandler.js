@@ -9,7 +9,7 @@ export function createMapIcon(scene) {
     .setDepth(25)
     .setInteractive()
     .on("pointerdown", () => {
-      scene.reduxDispatch(toggleLevelSelectorModal);
+      scene.reduxDispatch(toggleLevelSelectorModal());
     });
 }
 

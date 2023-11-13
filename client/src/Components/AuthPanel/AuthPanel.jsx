@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAuthModalMode, toggleAuthModal } from "../../redux/uiSlice";
 import { setUserData } from "../../redux/userSlice";
 import ReactLoading from "react-loading";
+import { fetchUserData } from "../../redux/userSlice";
 import "./authPanel.css";
 import "../../mainPage.css";
 import Cookies from "js-cookie";
@@ -27,7 +28,6 @@ const AuthPanel = () => {
     Cookies.set("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     dispatch(setUserData(user));
-    console.log(`User token: ${token}, user data: ${user}`);
   };
 
   const handleLogin = () => {
@@ -38,6 +38,7 @@ const AuthPanel = () => {
     axios
       .post(authUrl, loginData)
       .then((res) => {
+        dispatch(fetchUserData());
         toast.success("Successfully logged in!");
         dispatch(toggleAuthModal());
         setLoading(false);
@@ -67,6 +68,7 @@ const AuthPanel = () => {
         if (token) {
           handleAccount(token, user);
           toast.success("Account created successfully!");
+          dispatch(fetchUserData());
         }
       })
       .catch((err) => {

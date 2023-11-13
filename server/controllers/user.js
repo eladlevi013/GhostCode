@@ -11,11 +11,25 @@ exports.read = (req, res) => {
 
       user.hashed_password = undefined;
       user.salt = undefined;
+      user.__v = undefined;
+
+      if (Array.isArray(user.levelsData) && user.levelsData.length > 0) {
+        user.badgeIndex = Object.keys(user.levelsData).length / 5 + "";
+      } else {
+        user.badgeIndex = "0";
+      }
+
       user.levelsData = undefined;
-      user.badgeIndex = existingUser.levelsData.length / 5;
-      return res.json(user);
+      return res.json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        badgeIndex: user.badgeIndex,
+        role: user.role,
+      });
     })
     .catch((err) => {
+      console.log(err);
       return res.status(400).json({ error: "User not found" });
     });
 };
@@ -51,7 +65,10 @@ exports.writeLevel = async (req, res) => {
     const updatedLevelsData = { ...user.levelsData };
 
     // Update the cloned object
-    updatedLevelsData[finishedLevel] = { lines: linesOfcode, starsData: stars };
+    updatedLevelsData[`level${finishedLevel}`] = {
+      lines: linesOfcode,
+      starsData: stars,
+    };
 
     // Set the updated levelsData and mark as modified
     user.set("levelsData", updatedLevelsData);
@@ -62,6 +79,7 @@ exports.writeLevel = async (req, res) => {
 
     return res.json({ message: "Level saved" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Error saving level data" });
   }
 };

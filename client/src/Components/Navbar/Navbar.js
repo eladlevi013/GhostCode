@@ -35,10 +35,6 @@ export default function Navbar() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   // handling login popup
   const handleLoginRedirect = () => {
     dispatch(toggleAuthModal());

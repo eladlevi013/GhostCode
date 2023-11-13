@@ -32,7 +32,7 @@ export default class Level1 extends SpookyWoodsBaseLevel {
     // grass layer collidable with the player
     grassLayer.setCollisionByExclusion([-1]);
     collideTileMapLayer(this, grassLayer);
-    this.reduxDispatch(disableGameIsLoading);
+    this.reduxDispatch(disableGameIsLoading());
   }
 
   update() {}

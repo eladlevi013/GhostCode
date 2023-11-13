@@ -20,8 +20,6 @@ import Level19 from "../scenes/GhostlyCabin/Level19";
 import Level20 from "../scenes/GhostlyCabin/Level20";
 
 export function initializePhaserGame(Phaser, reduxDispatch) {
-  console.log("initializePhaserGame" + reduxDispatch);
-
   const config = {
     type: Phaser.AUTO,
     parent: "phaser-game",

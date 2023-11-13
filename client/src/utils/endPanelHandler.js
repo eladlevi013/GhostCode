@@ -1,35 +1,7 @@
 import { resetScene } from "./uiHandler.js";
-import axios from "axios";
 import { toggleLevelSelectorModal } from "../redux/uiSlice.js";
 
 export function showFinishLevelPanel(scene, stars) {
-  // send data to server
-  axios
-    .post(
-      "/api/account/level",
-      {
-        finishedLevel: scene.level,
-        linesOfcode: scene.linesOfcode,
-        stars: stars,
-      },
-      { headers: { authorization: `Bearer ${scene.token}` } }
-    )
-    .then((res) => {
-      axios
-        .get("/api/account/getData/", {
-          headers: { Authorization: `Bearer ${scene.token}` },
-        })
-        .then((res) => {
-          scene.setAccountData(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
   const posX = 0,
     posY = 0;
   const { width, height } = scene.sys.game.scale.gameSize;
@@ -97,8 +69,11 @@ export function showFinishLevelPanel(scene, stars) {
         .setDepth(105);
       next_level_button.setInteractive();
       next_level_button.on("pointerdown", () => {
+        console.log("changing scene");
         scene.movingTimer?.destroy();
         scene.scene.start(`level${++scene.level}`);
+        console.log("scene.level", scene.level);
+        scene.reduxDispatch(setCurrentLevel(scene.level));
       });
 
       let menu_button = scene.add
@@ -108,7 +83,7 @@ export function showFinishLevelPanel(scene, stars) {
         .setDepth(105);
       menu_button.setInteractive();
       menu_button.on("pointerdown", () => {
-        scene.reduxDispatch(toggleLevelSelectorModal);
+        scene.reduxDispatch(toggleLevelSelectorModal());
       });
     });
 }

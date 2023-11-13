@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "./redux/uiSlice.js";
 import Cookies from "js-cookie";
+import { fetchUserData, setLevelsData } from "./redux/userSlice.js";
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,9 @@ const Game = () => {
   const [phaserGameInstance, setPhaserGameInstance] = useState(null);
   const [code, setCode] = useState("");
   const [worldIndex, setWorldIndex] = useState(0);
-  const [levelsData, setLevelsData] = useState([]);
 
   const reduxDispatch = (data) => {
-    dispatch(data());
+    dispatch(data);
   };
 
   // when loading, check if user logged in
@@ -41,13 +41,12 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    // fetching user levels data from server
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/user/levels`, {
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       })
       .then((res) => {
-        setLevelsData(res.data);
+        dispatch(setLevelsData(res.data));
       });
   }, [currentLevel]);
 
@@ -105,7 +104,6 @@ const Game = () => {
 
       {levelSelectorModalOpen ? (
         <LevelSelector
-          levelsData={levelsData}
           phaserGame={phaserGameInstance}
           worldIndex={worldIndex}
           setWorldIndex={setWorldIndex}

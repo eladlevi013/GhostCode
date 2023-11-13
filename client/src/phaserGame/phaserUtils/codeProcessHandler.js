@@ -71,7 +71,6 @@ export function handlingCode(scene, code) {
   let lineNumber = { value: 1 };
   try {
     const parsedCode = pegParser.parse(code);
-    console.log(parsedCode);
 
     if (parsedCode) {
       calculateLineNumber(parsedCode, lineNumber);
@@ -87,7 +86,6 @@ export function handlingCode(scene, code) {
 
 export function handlingCodeRec(scene, code) {
   const ast = code;
-  console.log(ast);
 
   const iterateAST = async (node) => {
     if (!node) {
@@ -97,9 +95,7 @@ export function handlingCodeRec(scene, code) {
     // entity array handling
     if (node.type == "array") {
       const action = node.statement;
-      console.log(node.index);
       const index = evaluateExpression(node.index);
-      console.log("index: " + index);
       let player = null;
 
       // get the player from the right array

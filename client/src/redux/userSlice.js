@@ -8,7 +8,7 @@ export const fetchUserData = createAsyncThunk(
     try {
       const token = Cookies.get("token");
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/user/`,
+        `${process.env.REACT_APP_SERVER_API}/user`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -24,11 +24,32 @@ export const fetchUserData = createAsyncThunk(
   }
 );
 
+export const fetchUserLevels = createAsyncThunk(
+  "user/fetchUserLevels",
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const token = Cookies.get("token");
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/user/levels`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      dispatch(setLevelsData(response.data));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: null,
     currentLevel: 1,
+    levelsData: [],
   },
   reducers: {
     setUserData: (state, action) => {
@@ -36,6 +57,9 @@ export const userSlice = createSlice({
     },
     setCurrentLevel: (state, action) => {
       state.currentLevel = action.payload;
+    },
+    setLevelsData: (state, action) => {
+      state.levelsData = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -45,6 +69,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUserData, setCurrentLevel } = userSlice.actions;
+export const { setUserData, setCurrentLevel, setLevelsData } =
+  userSlice.actions;
 
 export default userSlice.reducer;
