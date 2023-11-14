@@ -3,7 +3,7 @@ import { resetScene } from "./gameUiHandler.js";
 import axios from "axios";
 import { fetchUserLevels } from "../../../redux/userSlice.js";
 import Cookies from "js-cookie";
-import { setCurrentLevel, nextLevel } from "../../../redux/userSlice.js";
+import { nextLevel } from "../../../redux/userSlice.js";
 
 export async function showFinishLevelPanel(scene, stars) {
   axios
@@ -126,16 +126,6 @@ function buildUIButtons(scene) {
 }
 
 function goToNextLevel(scene) {
-  // console.log(scene.level);
-
-  // // redirect to home page if the user finished all levels
-  // if (scene.level === 20) {
-  //   window.location.href = "/";
-  // } else {
-  //   scene.movingTimer?.destroy();
-  //   scene.scene.start(`level${++scene.level}`);
-  //   scene.reduxDispatch(setCurrentLevel(scene.level));
-  // }
   scene.reduxDispatch(nextLevel());
   scene.scene.stop(`level${scene.level}`);
 }

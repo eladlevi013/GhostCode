@@ -8,7 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "./redux/uiSlice.js";
 import Cookies from "js-cookie";
-import { fetchUserData, setLevelsData } from "./redux/userSlice.js";
+import { setLevelsData } from "./redux/userSlice.js";
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -53,6 +53,9 @@ const Game = () => {
     phaserGameInstance?.scene?.scenes[currentLevel].scene.start(
       `level${currentLevel}`
     );
+
+    // changing state
+    setRunningMode("run");
   }, [currentLevel]);
 
   const handleClick = () => {
