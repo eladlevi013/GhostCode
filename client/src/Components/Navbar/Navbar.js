@@ -27,10 +27,7 @@ export default function Navbar() {
 
     // token not found
     if (!token || token === null) {
-      dispatch(setUserData(null));
-      localStorage.removeItem("user");
-      Cookies.remove("token");
-
+      handleLogout();
       if (location.pathname === "/game") {
         window.location.href = "/";
       }
@@ -48,10 +45,7 @@ export default function Navbar() {
           .then(unwrapResult)
           .catch((err) => {
             console.log(err);
-            dispatch(setUserData(null));
-            localStorage.removeItem("user");
-            Cookies.remove("token");
-
+            handleLogout();
             if (location.pathname === "/game") {
               window.location.href = "/";
             }
@@ -60,13 +54,22 @@ export default function Navbar() {
     }
   }, []);
 
-  // handling login popup
+  // Function to handle logout
+  const handleLogout = () => {
+    dispatch(setUserData(null));
+    localStorage.removeItem("user");
+    Cookies.remove("token");
+
+    if (location.pathname === "/game") window.location.href = "/";
+  };
+
+  // Handling login popup
   const handleLoginRedirect = () => {
     dispatch(toggleAuthModal());
     dispatch(setAuthModalMode("login"));
   };
 
-  // handling badge modal
+  // Handling badge modal
   const handleBadgeModal = () => {
     dispatch(toggleBadgeModal());
   };
@@ -94,15 +97,7 @@ export default function Navbar() {
                 }
               />
             </p>
-            <p
-              onClick={() => {
-                dispatch(setUserData(null));
-                localStorage.removeItem("user");
-                Cookies.remove("token");
-                window.location.href = "/";
-              }}
-              className="logoutContainer"
-            >
+            <p onClick={handleLogout} className="logoutContainer">
               logout
             </p>
             {currentLevel > 0 && location.pathname === "/game" ? (
