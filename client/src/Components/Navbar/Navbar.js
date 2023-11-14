@@ -22,16 +22,28 @@ export default function Navbar() {
 
   useEffect(() => {
     const userDataLocally = JSON.parse(localStorage.getItem("user"));
+    const token = Cookies.get("token");
 
-    if (
-      userDataLocally &&
-      userDataLocally != null &&
-      userDataLocally.email &&
-      userDataLocally.username &&
-      userDataLocally._id
-    ) {
-      dispatch(setUserData(JSON.parse(localStorage.getItem("user"))));
-      dispatch(fetchUserData());
+    // token not found
+    if (!token || token === null) {
+      dispatch(setUserData(null));
+      localStorage.removeItem("user");
+      Cookies.remove("token");
+
+      if (location.pathname === "/game") {
+        window.location.href = "/";
+      }
+    } else {
+      if (
+        userDataLocally &&
+        userDataLocally != null &&
+        userDataLocally.email &&
+        userDataLocally.username &&
+        userDataLocally._id
+      ) {
+        dispatch(setUserData(JSON.parse(localStorage.getItem("user"))));
+        dispatch(fetchUserData());
+      }
     }
   }, []);
 
