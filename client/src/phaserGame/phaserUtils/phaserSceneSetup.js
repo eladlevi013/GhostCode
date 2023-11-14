@@ -26,7 +26,7 @@ export function initializePhaserGame(Phaser, reduxDispatch) {
     backgroundColor: "#ffffff",
     scale: {
       height: 1050,
-      width: 700,
+      width: 686,
     },
     scene: [
       new Level1({ reduxDispatch }),
