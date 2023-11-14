@@ -49,13 +49,15 @@ const Game = () => {
         dispatch(setLevelsData(res.data));
       });
 
-    // change scene
-    phaserGameInstance?.scene?.scenes[currentLevel].scene.start(
-      `level${currentLevel}`
-    );
+    if (currentLevel > 20) {
+      window.location.href = "/";
+    } else {
+      // change scene
+      phaserGameInstance?.scene.start(`level${currentLevel}`);
 
-    // changing state
-    setRunningMode("run");
+      // changing state
+      setRunningMode("run");
+    }
   }, [currentLevel]);
 
   const handleClick = () => {
