@@ -127,10 +127,11 @@ const Game = () => {
           style={{ marginTop: "100px" }}
         />
         <div className="codeEditorContainer">
-          <CodeEditor setCode={setCode} code={code} />
-          <button
-            className={runningMode == "run" ? "runButton" : "resetButton"}
-            onClick={handleClick}
+          <CodeEditor
+            setCode={setCode}
+            code={code}
+            runningMode={runningMode}
+            handleClick={handleClick}
           />
           <button
             style={{

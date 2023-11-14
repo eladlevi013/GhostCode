@@ -12,7 +12,14 @@
   transform: translateX(-50%);
   bottom: 10px;
   z-index: 100;
-  margin-left: 350px;
+}
+
+.runButtonContainer {
+  width: 68.5%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .resetButton {
@@ -29,7 +36,6 @@
   transform: translateX(-50%);
   bottom: 10px;
   z-index: 100;
-  margin-left: 350px;
 }
 
 .themeToggleButton {

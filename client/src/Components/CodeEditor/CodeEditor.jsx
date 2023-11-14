@@ -87,6 +87,12 @@ export default function CodeEditor(props) {
           cursorBlinkRate: 5000,
         }}
       ></CodeMirror>
+      <div className="runButtonContainer">
+        <button
+          className={props.runningMode == "run" ? "runButton" : "resetButton"}
+          onClick={props.handleClick}
+        />
+      </div>
     </>
   );
 }
