@@ -10,6 +10,7 @@ import { badges, worlds } from "../../constants";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 export default function Navbar() {
   const location = useLocation();
@@ -42,7 +43,19 @@ export default function Navbar() {
         userDataLocally._id
       ) {
         dispatch(setUserData(JSON.parse(localStorage.getItem("user"))));
-        dispatch(fetchUserData());
+        console.log("Fetching user data.");
+        dispatch(fetchUserData())
+          .then(unwrapResult)
+          .catch((err) => {
+            console.log(err);
+            dispatch(setUserData(null));
+            localStorage.removeItem("user");
+            Cookies.remove("token");
+
+            if (location.pathname === "/game") {
+              window.location.href = "/";
+            }
+          });
       }
     }
   }, []);

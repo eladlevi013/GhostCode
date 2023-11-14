@@ -6,6 +6,7 @@ export const fetchUserData = createAsyncThunk(
   "user/fetchUserData",
   async (_, { getState, rejectWithValue }) => {
     try {
+      // Attempt to fetch user data
       const token = Cookies.get("token");
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/user`,
@@ -16,9 +17,11 @@ export const fetchUserData = createAsyncThunk(
         }
       );
 
+      // If successful, store user data in localStorage and return the data
       localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
+      // If there is an error, use rejectWithValue to return a rejected action
       return rejectWithValue(error.message);
     }
   }
