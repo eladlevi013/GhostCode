@@ -25,7 +25,7 @@ const AuthPanel = () => {
   const handleUsernameChange = (event) => setUsername(event.target.value);
 
   const handleAccount = (token, user) => {
-    Cookies.set("token", token);
+    Cookies.set("token", token, { expires: 30 });
     localStorage.setItem("user", JSON.stringify(user));
     dispatch(setUserData(user));
   };
