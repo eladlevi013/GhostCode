@@ -16,9 +16,7 @@ mongoose
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: process.env.CLIENT_URL }));
-}
+app.use(cors({ "Access-Control-Allow-Origin": "*" }));
 
 // import routes
 const authRoutes = require("./routes/auth");
