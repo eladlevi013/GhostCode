@@ -111,21 +111,25 @@ const AuthPanel = () => {
               </div>
 
               <div className="inputsContainer">
-                <div className="inputSingleContainer">
+                <form className="inputSingleContainer">
                   <input
+                    id="loginEmail"
                     type="text"
                     name="email"
                     placeholder="Email"
                     required=""
                     className="inputStyle"
                     onChange={handleEmailChange}
+                    autoComplete="username"
                   />
                   <input
+                    id="password"
                     type="password"
                     name="password"
                     placeholder="Password"
                     required=""
                     className="inputStyle"
+                    autoComplete="new-password"
                     onChange={handlePasswordChange}
                   />
 
@@ -171,7 +175,7 @@ const AuthPanel = () => {
                       )}
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </>
           ) : (
@@ -186,11 +190,12 @@ const AuthPanel = () => {
               </div>
 
               <div className="inputsContainer">
-                <div
+                <form
                   className="inputSingleContainer"
                   style={{ marginTop: "10px" }}
                 >
                   <input
+                    id="username"
                     type="text"
                     name="username"
                     placeholder="Username"
@@ -199,19 +204,23 @@ const AuthPanel = () => {
                     onChange={handleUsernameChange}
                   />
                   <input
+                    id="registerEmail"
                     type="text"
                     name="email"
                     placeholder="Email"
                     required=""
                     className="inputStyle"
                     onChange={handleEmailChange}
+                    autoComplete="username"
                   />
                   <input
+                    id="password"
                     type="password"
                     name="password"
                     placeholder="Password"
                     required=""
                     className="inputStyle"
+                    autoComplete="new-password"
                     onChange={handlePasswordChange}
                   />
 
@@ -254,7 +263,7 @@ const AuthPanel = () => {
                       )}
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </>
           )}

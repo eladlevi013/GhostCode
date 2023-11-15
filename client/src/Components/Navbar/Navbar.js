@@ -44,7 +44,6 @@ export default function Navbar() {
         userDataLocally._id
       ) {
         dispatch(setUserData(JSON.parse(localStorage.getItem("user"))));
-        console.log("Fetching user data.");
         dispatch(fetchUserData())
           .then(unwrapResult)
           .catch((err) => {

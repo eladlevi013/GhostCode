@@ -18,9 +18,6 @@ export const fetchUserData = createAsyncThunk(
       );
 
       // If successful, store user data in localStorage and return the data
-      console.log(
-        "User data fetched successfully." + JSON.stringify(response.data)
-      );
       localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
@@ -42,7 +39,6 @@ export const fetchUserLevels = createAsyncThunk(
         }
       );
 
-      console.log(response.data.levelsData);
       dispatch(setLevelsData(response.data.levelsData));
       dispatch(setBadgeIndex(response.data.badgeIndex));
       return response.data;
@@ -70,7 +66,6 @@ export const userSlice = createSlice({
       state.currentLevel += 1;
     },
     setLevelsData: (state, action) => {
-      console.log(action.payload);
       state.levelsData = action.payload;
     },
     setBadgeIndex: (state, action) => {

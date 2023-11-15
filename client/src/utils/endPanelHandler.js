@@ -69,7 +69,6 @@ export function showFinishLevelPanel(scene, stars) {
         .setDepth(105);
       next_level_button.setInteractive();
       next_level_button.on("pointerdown", () => {
-        console.log("changing scene");
         scene.movingTimer?.destroy();
         scene.scene.start(`level${++scene.level}`);
         scene.reduxDispatch(setCurrentLevel(scene.level));
