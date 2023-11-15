@@ -114,22 +114,23 @@ const AuthPanel = () => {
                 <form className="inputSingleContainer">
                   <input
                     id="loginEmail"
-                    type="text"
+                    type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder="Your email"
                     required=""
                     className="inputStyle"
                     onChange={handleEmailChange}
-                    autoComplete="username"
+                    autoComplete="email"
                   />
+
                   <input
-                    id="password"
+                    id="loginPassword"
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Your password"
                     required=""
                     className="inputStyle"
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                     onChange={handlePasswordChange}
                   />
 
@@ -183,41 +184,41 @@ const AuthPanel = () => {
               <div className="modeContainer">
                 <div
                   className="titleContainer"
-                  style={{ marginLeft: "-90px", marginTop: "-125px" }}
+                  style={{ marginLeft: "-90px", marginTop: "-120px" }}
                 >
                   REGISTER:
                 </div>
               </div>
 
               <div className="inputsContainer">
-                <form
-                  className="inputSingleContainer"
-                  style={{ marginTop: "10px" }}
-                >
+                <form className="inputSingleContainer">
                   <input
                     id="username"
                     type="text"
                     name="username"
-                    placeholder="Username"
+                    placeholder="Choose a username"
                     required=""
                     className="inputStyle"
                     onChange={handleUsernameChange}
+                    autoComplete="username"
                   />
+
                   <input
                     id="registerEmail"
-                    type="text"
+                    type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder="Your email"
                     required=""
                     className="inputStyle"
                     onChange={handleEmailChange}
-                    autoComplete="username"
+                    autoComplete="email"
                   />
+
                   <input
                     id="password"
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Choose a password"
                     required=""
                     className="inputStyle"
                     autoComplete="new-password"
