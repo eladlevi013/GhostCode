@@ -8,6 +8,7 @@ import AuthPanel from "./Components/AuthPanel/AuthPanel";
 import BadgeModal from "./Components/BadgeModal/BadgeModal";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import PageNotFound from "./PageNotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/game" element={<Game />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   </Provider>
