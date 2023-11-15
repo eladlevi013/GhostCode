@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
         username,
         email,
         role,
-        badgeIndex: Object.keys(levelsData).length / 5,
+        badgeIndex: parseInt(Object.keys(levelsData).length / 5),
       },
       message: "Signin success",
     });

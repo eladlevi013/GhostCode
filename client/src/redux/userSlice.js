@@ -18,6 +18,9 @@ export const fetchUserData = createAsyncThunk(
       );
 
       // If successful, store user data in localStorage and return the data
+      console.log(
+        "User data fetched successfully." + JSON.stringify(response.data)
+      );
       localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
@@ -39,7 +42,9 @@ export const fetchUserLevels = createAsyncThunk(
         }
       );
 
-      dispatch(setLevelsData(response.data));
+      console.log(response.data.levelsData);
+      dispatch(setLevelsData(response.data.levelsData));
+      dispatch(setBadgeIndex(response.data.badgeIndex));
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,7 +70,16 @@ export const userSlice = createSlice({
       state.currentLevel += 1;
     },
     setLevelsData: (state, action) => {
+      console.log(action.payload);
       state.levelsData = action.payload;
+    },
+    setBadgeIndex: (state, action) => {
+      state.userData.badgeIndex = action.payload;
+      const userData = localStorage.getItem("user");
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...JSON.parse(userData), badgeIndex: action.payload })
+      );
     },
   },
   extraReducers: (builder) => {
@@ -75,7 +89,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUserData, setCurrentLevel, setLevelsData, nextLevel } =
-  userSlice.actions;
+export const {
+  setUserData,
+  setCurrentLevel,
+  setLevelsData,
+  nextLevel,
+  setBadgeIndex,
+} = userSlice.actions;
 
 export default userSlice.reducer;

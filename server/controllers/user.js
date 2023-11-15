@@ -13,12 +13,7 @@ exports.read = (req, res) => {
       user.salt = undefined;
       user.__v = undefined;
 
-      if (Array.isArray(user.levelsData) && user.levelsData.length > 0) {
-        user.badgeIndex = Object.keys(user.levelsData).length / 5 + "";
-      } else {
-        user.badgeIndex = "0";
-      }
-
+      user.badgeIndex = parseInt(Object.keys(user.levelsData).length / 5);
       user.levelsData = undefined;
       return res.json({
         _id: user._id,
@@ -43,7 +38,10 @@ exports.readLevels = (req, res) => {
         return res.status(400).json({ error: "User not found" });
       }
 
-      return res.json(user.levelsData);
+      return res.json({
+        levelsData: user.levelsData,
+        badgeIndex: parseInt(Object.keys(user.levelsData).length / 5),
+      });
     })
     .catch((err) => {
       return res.status(400).json({ error: "User not found" });

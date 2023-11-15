@@ -8,7 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "./redux/uiSlice.js";
 import Cookies from "js-cookie";
-import { setLevelsData } from "./redux/userSlice.js";
+import { setLevelsData, fetchUserLevels } from "./redux/userSlice.js";
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -41,13 +41,7 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_API}/user/levels`, {
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      })
-      .then((res) => {
-        dispatch(setLevelsData(res.data));
-      });
+    dispatch(fetchUserLevels());
 
     if (currentLevel > 20) {
       window.location.href = "/";
@@ -132,6 +126,7 @@ const Game = () => {
             code={code}
             runningMode={runningMode}
             handleClick={handleClick}
+            currentLevel={currentLevel}
           />
           <button
             style={{

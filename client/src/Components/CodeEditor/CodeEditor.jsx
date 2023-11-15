@@ -2,7 +2,7 @@ import "./codeEditor.css";
 import CodeMirror from "@uiw/react-codemirror";
 import { xcodeLightInit, xcodeDarkInit } from "@uiw/codemirror-theme-xcode";
 import { javascript } from "@codemirror/lang-javascript";
-import React from "react";
+import React, { useEffect } from "react";
 import CodeHelper from "../CodeHelper/CodeHelper";
 import { useSelector } from "react-redux";
 
@@ -10,6 +10,10 @@ export default function CodeEditor(props) {
   const { setCode, code } = props;
   const theme = useSelector((state) => state.ui.theme);
   const codemirrorRef = React.useRef();
+
+  useEffect(() => {
+    setCode("");
+  }, [props.currentLevel]);
 
   const handleInsertLetter = (letter, startPos) => {
     if (!codemirrorRef.current) return;

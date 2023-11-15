@@ -5,7 +5,11 @@ import {
   setAuthModalMode,
   toggleBadgeModal,
 } from "../../redux/uiSlice";
-import { setUserData, fetchUserData } from "../../redux/userSlice";
+import {
+  setUserData,
+  fetchUserData,
+  setBadgeIndex,
+} from "../../redux/userSlice";
 import { badges, worlds } from "../../constants";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
